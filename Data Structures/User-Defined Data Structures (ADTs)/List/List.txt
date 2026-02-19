@@ -1,0 +1,7 @@
+List is an example of Aggregation.
+List is a set of collection of Nodes.
+It is not Linear Data Structure.
+It is usually dynamically allocated (runtime based)
+It can be done on either stack or heap ( usually we do on heap)
+We can make Linked List using one class (more complex) but then we need to put raw pointers and it becomes very difficult to manage.
+We can make Linked List using 2 classes (more easier) , which becomes very easy to manage .
