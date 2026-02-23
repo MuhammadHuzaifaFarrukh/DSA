@@ -30,7 +30,21 @@ public:
             SIZE = s;
             CAP = s;
         }
-        arr = new T[CAP];
+
+        // Even though we put try catch inside main , we put this when user requests large memory to be allocated
+        // This error will still be caught inside main if we do try-catch there
+        // But then our arr , becomes a dangling pointer.
+        try
+        {
+            arr = new T[CAP]; // Try to get new memory
+        }
+        catch (const std::bad_alloc &)
+        {
+            // If it fails, we catch it here and re-throw.
+            // Importantly: 'arr' is still intact! The vector is still valid.
+            throw std::runtime_error("Vector reserve failed: Out of memory.");
+        }
+
         for (int i = 0; i < SIZE; i++)
         {
             arr[i] = val;
@@ -49,7 +63,20 @@ public:
         {
             CAP = 1;
         }
-        arr = new T[CAP];
+
+        // Even though we put try catch inside main , we put this when user requests large memory to be allocated
+        // This error will still be caught inside main if we do try-catch there
+        // But then our arr , becomes a dangling pointer.
+        try
+        {
+            arr = new T[CAP]; // Try to get new memory
+        }
+        catch (const std::bad_alloc &)
+        {
+            // If it fails, we catch it here and re-throw.
+            // Importantly: 'arr' is still intact! The vector is still valid.
+            throw std::runtime_error("Vector reserve failed: Out of memory.");
+        }
 
         int i = 0;
         for (const T &item : list)
@@ -105,7 +132,21 @@ public:
         {
             return;
         }
-        T *temp = new T[r];
+
+        T *temp = nullptr;
+        // Even though we put try catch inside main , we put this when user requests large memory to be allocated
+        // This error will still be caught inside main if we do try-catch there
+        // But then our arr , becomes a dangling pointer.
+        try
+        {
+            temp = new T[r]; // Try to get new memory
+        }
+        catch (const std::bad_alloc &)
+        {
+            // If it fails, we catch it here and re-throw.
+            // Importantly: 'arr' is still intact! The vector is still valid.
+            throw std::runtime_error("Vector reserve failed: Out of memory.");
+        }
         for (int i = 0; i < SIZE; i++)
         {
             temp[i] = move(arr[i]);
@@ -316,7 +357,6 @@ public:
         return !(*this == other);
     }
 
-    
     void selectionSort()
     {
         for (int i = 0; i < SIZE - 1; i++)
@@ -337,8 +377,7 @@ public:
             }
         }
     }
-     
-    
+
     void reverse_selectionSort()
     {
         for (int i = 0; i < SIZE - 1; i++)
@@ -358,7 +397,7 @@ public:
         }
     }
 
-    void reverse() 
+    void reverse()
     {
         if (SIZE <= 1)
         {
@@ -368,9 +407,9 @@ public:
         int start = 0;
         int end = SIZE - 1;
 
-        while (start < end) 
-        {   
-            //std::swap(arr[start], arr[end]);
+        while (start < end)
+        {
+            // std::swap(arr[start], arr[end]);
             T temp = arr[start];
             arr[start] = arr[end];
             arr[end] = temp;
