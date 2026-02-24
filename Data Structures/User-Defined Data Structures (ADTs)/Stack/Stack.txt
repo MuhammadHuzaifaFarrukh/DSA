@@ -1,0 +1,36 @@
+// To understand a Stack, it is best to think of it not just as a container, but as a 
+// behavior. While an array or a vector allows you to access any element at any time, 
+// a stack enforces a strict rule: Last-In, First-Out (LIFO).
+
+// What is a Stack? (The LIFO Principle)
+// Imagine a stack of physical plates in a cafeteria.
+// You always place a new plate on the top.
+// If you want to take a plate, you take the one from the top.
+// You cannot (safely) grab a plate from the middle or the bottom without removing everything above it first.
+
+// You might ask: "If a Vector can do everything a Stack can, why use a Stack?"
+// The answer is Safety and Intent.
+// Using a Stack ADT tells other programmers (and the compiler) exactly how the data should be handled.
+// It prevents bugs where someone might accidentally delete an element from the middle of your history or your "undo" chain, which would break the logic of your program.
+// In short, a Vector is a tool for storage, while a Stack is a tool for process control.
+
+// Different languages have different implementations of Stack , while concept is same.
+// In C++ , the built-in std::stack is a container adapter that sits on top of another container : deque.
+// It doesn't actually manage memory itself.
+// It uses std::deque because deques don't require massive "copy-everything" reallocations like vectors do.
+// Just like how a deque works , stack will work like that with its own member functions but memory managed by std::deque
+
+// You can force it to use a std::vector or std::list.
+// E.g : When you write std::stack<int, std::vector<int>>, the stack object literally contains a 
+// std::vector as a private member variable. It then maps its own functions directly to the vector's functions:
+// stack::push() calls vector::push_back()
+// stack::pop() calls vector::pop_back()
+// stack::top() calls vector::back()
+// Because C++ gives you manual control, you choose whether you want the "doubling" behavior of a vector or the "chunked" behavior of a deque.
+
+// In Java , stack extends vector so it basically works like a vector. 
+
+// Here in this ADT , Stack is designed like a vector that manages its memory itself not like the built-in one.
+// But we make a topindex that points to the last element in the array.
+// We could also have implemented in such a way that our stack worked like that of vector , list , deque like the built-in one.
+// For that we use a technique called template template parameters. 
