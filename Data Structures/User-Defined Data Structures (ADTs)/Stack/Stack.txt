@@ -29,8 +29,3 @@
 // Because C++ gives you manual control, you choose whether you want the "doubling" behavior of a vector or the "chunked" behavior of a deque.
 
 // In Java , stack extends vector so it basically works like a vector. 
-
-// Here in this ADT , Stack is designed like a vector that manages its memory itself not like the built-in one.
-// But we make a topindex that points to the last element in the array.
-// We could also have implemented in such a way that our stack worked like that of vector , list , deque like the built-in one.
-// For that we use a technique called template template parameters. 
