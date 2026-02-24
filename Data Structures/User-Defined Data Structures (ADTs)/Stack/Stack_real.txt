@@ -1,0 +1,5 @@
+Stack_real is just a stack but implemented like std::stack that is built-in C++.
+
+// Here in this ADT , Stack is designed like a container adapter that doesn't manages its memory itself like the built-in one.
+// We have implemented in such a way that our stack works like that of vector , list , deque like the built-in one.
+// For that we use a technique called template template parameters. 
