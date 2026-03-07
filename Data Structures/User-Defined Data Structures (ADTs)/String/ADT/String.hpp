@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 #include <stdexcept>
+#include <climits>
 
 // This Class Demonstrates the usage of String Class.
 // There is a built-in class in C++ called std::string.
@@ -249,19 +250,47 @@ public:
     {
         if (s.empty())
             throw std::invalid_argument("stoi: empty");
-        long long res = 0;
-        int sign = 1, i = 0;
-        if (s[0] == '-')
+
+        size_t i = 0;
+        int sign = 1;
+        long long res = 0; // Keep long long to detect overflow
+
+        // 1. Skip leading whitespace
+        while (i < s._size && s[i] == ' ')
         {
-            sign = -1;
-            i = 1;
+            i++;
         }
-        for (; i < s._size; i++)
+
+        // 2. Handle sign
+        if (i < s._size && (s[i] == '-' || s[i] == '+'))
         {
-            if (s[i] < '0' || s[i] > '9')
-                throw std::invalid_argument("stoi: invalid char");
+            sign = (s[i] == '-') ? -1 : 1;
+            i++;
+        }
+
+        // 3. Process digits
+        bool hasDigits = false;
+        while (i < s._size && s[i] >= '0' && s[i] <= '9')
+        {
+            hasDigits = true;
             res = res * 10 + (s[i] - '0');
+
+            // 4. Check overflow for 32-bit int range
+            if (sign == 1 && res > INT_MAX)
+            {
+                return INT_MAX;
+            }
+            if (sign == -1 && -res < INT_MIN)
+            {
+                return INT_MIN;
+            }
+
+            i++;
         }
+
+        if (!hasDigits)
+            throw std::invalid_argument("stoi: no digits found");
+
         return (int)(res * sign);
     }
 
@@ -304,6 +333,43 @@ public:
     {
         os << s._data;
         return os;
+    }
+
+
+    void selection_sort()
+    {
+        // 1. Safety Check: If the buffer is null, we can't sort it.
+        if (_data == nullptr)
+        {
+            throw std::runtime_error("selection_sort: Cannot sort a null string");
+        }
+
+        // 2. Early Exit: If the string is empty or has 1 char, it's already "sorted."
+        // This isn't an error; it's just an optimization.
+        if (_size <= 1)
+        {
+            return;
+        }
+
+        // 3. The Algorithm
+        for (size_t i = 0; i < _size - 1; i++)
+        {
+            size_t min_idx = i;
+            for (size_t j = i + 1; j < _size; j++)
+            {
+                if (_data[j] < _data[min_idx])
+                {
+                    min_idx = j;
+                }
+            }
+
+            if (min_idx != i)
+            {
+                char temp = _data[i];
+                _data[i] = _data[min_idx];
+                _data[min_idx] = temp;
+            }
+        }
     }
 
     class Iterator
