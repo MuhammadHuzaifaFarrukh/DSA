@@ -5,11 +5,11 @@ If you want to take a plate, you take the one from the top.
 You cannot (safely) grab a plate from the middle or the bottom without removing everything above it first.
 
 
-// You might ask: "If a Vector can do everything a Stack can, why use a Stack?"
-// The answer is Safety and Intent.
-// Using a Stack ADT tells other programmers (and the compiler) exactly how the data should be handled.
-// It prevents bugs where someone might accidentally delete an element from the middle of your history or your "undo" chain, which would break the logic of your program.
-// In short, a Vector is a tool for storage, while a Stack is a tool for process control.
+You might ask: "If a Vector can do everything a Stack can, why use a Stack?"
+The answer is Safety and Intent.
+Using a Stack ADT tells other programmers (and the compiler) exactly how the data should be handled.
+It prevents bugs where someone might accidentally delete an element from the middle of your history or your "undo" chain, which would break the logic of your program.
+In short, a Vector is a tool for storage, while a Stack is a tool for process control.
 
 
 Where to use Stack for Questions : 
@@ -18,3 +18,4 @@ Where to use Stack for Questions :
 3) Expressions Conversion (Infix , Prefix , Postfix)
 4) Expression Evaluation (Infix , Prefix , Postfix)
 
+You may use std::stack for these or try using the Stack Class made in this repository in the User-Defined Data Structures (ADTs).
