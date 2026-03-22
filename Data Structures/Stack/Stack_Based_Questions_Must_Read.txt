@@ -18,6 +18,7 @@ Where to use Stack for Questions :
 3) Expressions Conversion (Infix , Prefix , Postfix)
 4) Expression Evaluation (Infix , Prefix , Postfix)
 5) Parenthesis Evaluation
+(String Related Questions are usually handled by Stack)
 
 In this folder you will find all the stack based questions , with the applications listed above. 
 You may use std::stack for this or try using Stack Class from this repo from User-Defined Data Structures (ADTs).
