@@ -11,10 +11,19 @@ You cannot (safely) grab a plate from the middle or the bottom without removing 
 // It prevents bugs where someone might accidentally delete an element from the middle of your history or your "undo" chain, which would break the logic of your program.
 // In short, a Vector is a tool for storage, while a Stack is a tool for process control.
 
+Monotonic Stack is a variant of stack applied using the Stack itself.
+In a standard stack, you can push any value at any time. In a Monotonic Stack, you maintain a strict order (either entirely increasing or entirely decreasing) by popping elements that violate that order before you push a new one.
+
+The Two Types:
+1) Monotonic Increasing: The stack only contains elements in increasing order (e.g., 1, 3, 5, 8).
+The Rule: Before pushing x, you must pop() everything that is greater than x.
+
+2) Monotonic Decreasing: The stack only contains elements in decreasing order (e.g., 10, 7, 4, 2).
+The Rule: Before pushing x, you must pop() everything that is smaller than x.
 
 Where to use Stack for Questions : 
 1) Recursion Based (Not Usually but still)
-2) Nearest / Next Greater / Smaller Element
+2) Nearest / Next Greater / Smaller Element	(By Monotonic Stack)
 3) Expressions Conversion (Infix , Prefix , Postfix)
 4) Expression Evaluation (Infix , Prefix , Postfix)
 5) Parenthesis Evaluation
