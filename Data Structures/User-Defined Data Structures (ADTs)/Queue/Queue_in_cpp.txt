@@ -1,0 +1,2 @@
+// std::queue works on deque that allocates chunks of memory each time an element is added.
+// So std::queue can be made to work on deque by default and even std::list but not std::vector because a vector doesn't have a pop_front() so it will cause compilation errors if the queue uses pop as it has to pop from front only.
