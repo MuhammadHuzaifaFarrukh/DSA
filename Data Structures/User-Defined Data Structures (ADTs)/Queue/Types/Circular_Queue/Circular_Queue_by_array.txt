@@ -1,0 +1,11 @@
+Circular Queue is one that saves space by adding the elements on the elements that were present there before.
+
+// Meaning that if the elements can be pushed to the places of those elements that were popped.
+// This saves us huge space and even the time to allocate the new space for more elements.
+
+// There is no circular queue in cpp by default but we have made it here and making it to work like deque or list.
+
+Circular Queue by array is the most standard option we can do.
+By using Linked List , we can only achieve the circular linked list , making our queue as circular linked list not as circular queue.
+
+Circular Queue in C++ is not present , it is a linear data structure and a custom data structure rather than derived one.
