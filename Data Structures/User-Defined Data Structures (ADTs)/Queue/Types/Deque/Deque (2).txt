@@ -1,0 +1,27 @@
+To understand a Deque (Double-Ended Queue), think of it as a two-way street.
+// While a Stack is LIFO and a Queue is FIFO, a Deque allows you to add or remove
+// elements from both the front and the back with equal efficiency (O(1)).
+
+// Why not just use a Vector?
+// A Vector is contiguous; pushing to the front requires shifting every single
+// element, which is O(n). A Deque avoids this by using a "Segmented Map."
+
+// Architecture: Map of Blocks
+// Instead of one giant array, this Deque manages a "Map" (an array of pointers).
+// Each pointer in the Map points to a fixed-size "Block" of memory.
+// 1. Growth: When a block is full, we simply allocate a new block and add it
+//    to the map. We don't have to copy the existing data.
+// 2. Performance: It provides the random access speed of a Vector [i] but the
+//    flexible growth of a Linked List.
+
+// This includes:
+// 1. O(1) Push/Pop at both ends.
+// 2. Segmented Indexing Logic: Uses (idx / BLOCK_SIZE) for row and (idx % BLOCK_SIZE)
+//    for column mapping, matching the logic used in the C++ Standard Library.
+// 3. Shrink to Fit: Reduces the size of the Map after large deletions to
+//    optimize memory usage on high-end systems.
+// 4. Custom Iterator: A nested class that allows seamless traversal across
+//    block boundaries.
+
+
+Deque in C++ is a linear data structure and a sequence container (std::deque<T>)
