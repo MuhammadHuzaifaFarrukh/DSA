@@ -1,0 +1,15 @@
+A deque allows the insertion and removal of data at both ends (start and end) and even allows the insertion / removal / access in middle.
+Stack and Queue in C++ therefore use deque for this purpose.
+
+std::deque is a base container and a linear data structure as well.
+
+The "Actual" Deque (the T** version) is a Virtual Continuous Array. Even though the memory is physically scattered in different chunks, the Deque's internal logic makes it appear like one long line to the programmer.
+The Map (The T**): This is the "Brain." It is a central array of pointers. Each pointer tells the CPU where a specific block of data lives.
+The Chunks: These are the "Body." Each chunk is a small, fixed-size array (usually 512 bytes or 8-16 elements).
+
+The Deque is a Hybrid. It provides:
+The Indexing of an Array (via the Map).
+The Growth of a Linked List (via Chunks).
+The Speed of a Stack/Queue (via O(1) ends).
+
+Deque in C++ is a linear data structure and a sequence container (std::deque<T>)
