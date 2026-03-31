@@ -1,0 +1,27 @@
+// To understand a Queue, it is best to think of it as a FIFO (First-In, First-Out) behavior.
+// While a Stack is like a stack of plates, a Queue is like a line of people waiting for coffee.
+// The first person to join the line is the first one served.
+
+Queue and all its types in C++ except deque are derived containers.
+
+// In C++ , the header queue contains std::queue and std::priority_queue both.
+// In C++, the built-in std::queue is an adaptor that usually sits on top of a std::deque.
+// It restricts access so you can only add to the back and remove from the front.
+// Using a Queue ADT instead of a Vector ensures Safety and Intent, preventing accidental
+// middle-insertions that would break the logic of your process.
+
+// std::queue works on deque that allocates chunks of memory each time an element is added.
+// So std::queue can be made to work on deque by default and even std::list also
+
+// Elements are added at REAR and removed from FRONT. Once REAR hits CAP, it resizes.
+// However this wastes a lot of space in this way if the space was allocated for many elements.
+
+
+// Types of Queues :
+
+// A queue is dynamic data structure meaning its size increases as elements are added in it.
+// We have implemented all queue types as dynamic just like in C++ it is in dynamic allocation for arrays.
+// 1) Linear Queue (can be fixed size but dynamic in C++ as it uses dequeue)
+// 2) Circular Queue (Not Present in C++ , but still we implemented as dynamic)
+// 3) Priority Queue (grows Dynamic like in C++ as it sits on vector)
+// 4) Deque (grows dynamically like in C++)
