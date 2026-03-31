@@ -19,7 +19,7 @@ using namespace std;
 // Heap<int, greater<int>> minH; // Uses std::greater, triggers swap if parent > child.
 
 template <typename T, typename Compare = less<T>> // We can also write : <typename Tp , typename Container = vector<Tp> , typename Compare = less<Tp> >  so it can use deque or vector both , and for that we need to make Container c , an object inside this class instead of T *arr and other data members.
-class Heap      // Think of this class just like a Priority queue but managed by C-Styled Arrays
+class Heap                                        // Think of this class just like a Priority queue but managed by C-Styled Arrays
 {
     T *arr;
     int Size;
@@ -227,6 +227,23 @@ public:
         delete[] arr;
         arr = newArr;
         Cap = newCap;
+    }
+
+    bool operator==(const Heap<T, Compare> &other) const
+    {
+        if (Size != other.Size)
+            return false;
+        for (int i = 0; i < Size; i++)
+        {
+            if (arr[i] != other.arr[i])
+                return false;
+        }
+        return true;
+    }
+
+    bool operator!=(const Heap<T, Compare> &other) const
+    {
+        return !(*this == other);
     }
 
     void display() const
