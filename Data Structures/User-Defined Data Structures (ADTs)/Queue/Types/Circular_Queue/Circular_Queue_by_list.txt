@@ -1,0 +1,9 @@
+Circular Queue by list , cannot be achieved in the same way we do with arrays. Because List Nodes are deleted or inserted at that moment instantly. So our queue can be made as circular linked list (that we can name as Circular Queue by list) but its still behaving like a Circular Linked List and not as the Circular queue that we desire.
+
+But its not useless at all.
+
+In a Linked List, "Circular" means the REAR->next pointer points back to FRONT instead of nullptr. 
+This structure is often used for buffering data streams where you want to cycle through a fixed set of nodes.
+
+Circular Queue in C++ is not present , it is a linear data structure and a custom data structure rather than derived one.
+
