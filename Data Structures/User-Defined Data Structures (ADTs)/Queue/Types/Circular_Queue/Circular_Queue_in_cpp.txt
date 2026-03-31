@@ -1,0 +1,4 @@
+C++ doesn't have its own circular linked list.
+Here we have made circular linked list that would have been just like an STL one if it were in it. It can be made to use vector or deque but not list .
+
+Circular Queue in C++ is not present , it is a linear data structure and a custom data structure rather than derived one.
