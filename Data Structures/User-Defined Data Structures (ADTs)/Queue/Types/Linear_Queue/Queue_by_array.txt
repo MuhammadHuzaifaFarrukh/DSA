@@ -1,0 +1,17 @@
+// To understand a Queue, it is best to think of it as a FIFO (First-In, First-Out) behavior.
+// While a Stack is like a stack of plates, a Queue is like a line of people waiting for coffee.
+// The first person to join the line is the first one served.
+
+// In C++ , the header queue contains std::queue and std::priority_queue both.
+// In C++, the built-in std::queue is an adaptor that usually sits on top of a std::deque.
+// It restricts access so you can only add to the back and remove from the front.
+// Using a Queue ADT instead of a Vector ensures Safety and Intent, preventing accidental
+// middle-insertions that would break the logic of your process.
+
+// std::queue works on deque that allocates chunks of memory each time an element is added.
+// So std::queue can be made to work on deque by default and even std::list also
+
+// Elements are added at REAR and removed from FRONT. Once REAR hits CAP, it resizes.
+// However this wastes a lot of space in this way if the space was allocated for many elements.
+
+// Linear Queue is a linear data structure and a derived container in c++ (std::queue<T>)
