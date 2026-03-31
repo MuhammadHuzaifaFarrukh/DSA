@@ -175,6 +175,44 @@ public:
             Heapify(0, i);
         }
     }
+
+    void display() const
+    {
+        if (c.empty())
+        {
+            cout << "PriorityQueue is empty." << endl;
+            return;
+        }
+        for (const auto &item : c)
+        {
+            cout << item << " ";
+        }
+        cout << endl;
+    }
+
+    bool operator==(const PriorityQueue &other) const
+    {
+        // Comparing the underlying containers and the comparators
+        return (c == other.c);
+    }
+
+    bool operator!=(const PriorityQueue &other) const
+    {
+        return !(*this == other);
+    }
+
+    // Friend function for << operator
+    template <typename U, typename Cont, typename Comp>
+    friend ostream &operator<<(ostream &os, const PriorityQueue<U, Cont, Comp> &pq)
+    {
+        os << "[ ";
+        for (size_t i = 0; i < pq.c.size(); i++)
+        {
+            os << pq.c[i] << (i == pq.c.size() - 1 ? "" : ", ");
+        }
+        os << " ]";
+        return os;
+    }
 };
 
 /**
