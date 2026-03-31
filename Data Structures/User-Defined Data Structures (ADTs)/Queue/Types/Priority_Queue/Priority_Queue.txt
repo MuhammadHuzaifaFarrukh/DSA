@@ -1,0 +1,23 @@
+// To understand a Priority Queue, think of it as an Emergency Room (ER) in a hospital.
+// While a standard Queue is FIFO (First-In, First-Out), a Priority Queue serves
+// the most "urgent" or "highest value" element first, regardless of arrival time.
+
+// In C++ , the header queue contains std::queue and std::priority_queue both.
+// In C++, std::priority_queue is a container adaptor that provides O(log n) time
+// for insertions and extractions. It typically sits on top of a std::vector.
+// This implementation uses a Binary Max-Heap stored in a dynamic array.
+
+// A Binary Heap is a "Complete Binary Tree," which allows us to map tree nodes
+// to array indices using simple arithmetic, avoiding the overhead of pointers.
+// Parent(i) = (i-1)/2  |  LeftChild(i) = 2i+1  |  RightChild(i) = 2i+2
+
+// priority_queue is present in std:: queue and can be made to work on vector by default and even std::deque
+
+// Priority Queue is actually a heap (either min or max) which is a complete binary tree.
+// In C++ , priority queue is a linear data structure and a derived container.
+// It uses std::vector<T> and also less<T> so it uses vector and max heap by default.
+// We can write greater<int> to make it work like min heap.
+
+// It works with those containers that have random access iterators like std::deque , std::array etc.
+// But not with std::list , std::set , std::map etc as they don't have random access iterators or manage their memory by themselve like Red-Black Tree.
+// And also not with std::queue , std::stack cause they are already derived containers and hide their functionality while std::priority_queue needs to see the functions.
