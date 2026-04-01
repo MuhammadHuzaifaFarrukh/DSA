@@ -1,4 +1,4 @@
-Circular Queue is one that saves space by adding the elements on the elements that were present there before.
+Circular Queue (Ring Buffer) is one that saves space by adding the elements on the elements that were present there before.
 
 // Meaning that if the elements can be pushed to the places of those elements that were popped.
 // This saves us huge space and even the time to allocate the new space for more elements.
