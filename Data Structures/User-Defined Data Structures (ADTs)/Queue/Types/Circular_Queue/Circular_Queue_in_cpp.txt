@@ -1,7 +1,7 @@
 C++ doesn't have its own circular linked list.
 Here we have made circular linked list that would have been just like an STL one if it were in it. It can be made using vector or deque but by list should be avoided.
 
-Circular Queue in C++ is not present , it is a linear data structure and a custom derived data structure rather than a standard derived one.
+Circular Queue (Ring Buffer) in C++ is not present , it is a linear data structure and a custom derived data structure rather than a standard derived one.
 
 
 However using Linear Queue , we can also implement a circular queue using rotation of linear queue. (by simulating circularity)
@@ -20,7 +20,7 @@ Complexity: A single "rotation" to reach a specific element becomes O(N).
 A True Circular Queue is the one that we implemented using arrays (using modulo math that keeps O(1) ).
 
 
-So if we want to save space and not the kind of rotation by using linear queue, then circular queue by array is the best option.
-If we want the circular behavior of rotation for a queue (Simulation-Based) , then we perform rotation on linear queue.
+So if we want to save space and high performance buffer, then circular queue by array is the best option.
+If we want the circular behavior of rotation for a queue (Simulation-Based) , then we perform simulating rotation on linear queue.
 Circular Queue by list is avoided as it pointers are overhead and slow as nodes are scattered in the memory and also it doesn't behave like a true circular queue that we want (like by array).Its just like working with a circular linked list.
 
