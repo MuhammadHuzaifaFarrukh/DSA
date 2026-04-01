@@ -1,4 +1,26 @@
 C++ doesn't have its own circular linked list.
-Here we have made circular linked list that would have been just like an STL one if it were in it. It can be made to use vector or deque but not list .
+Here we have made circular linked list that would have been just like an STL one if it were in it. It can be made using vector or deque but by list should be avoided.
 
-Circular Queue in C++ is not present , it is a linear data structure and a custom data structure rather than derived one.
+Circular Queue in C++ is not present , it is a linear data structure and a custom derived data structure rather than a standard derived one.
+
+
+However using Linear Queue , we can also implement a circular queue using rotation of linear queue. (by simulating circularity)
+q = [1,2,3,4,5]
+Now we push the front and then pop the first one so
+q = [2,3,4,5,1] and so on.
+Here we have to do these operations manually.
+The difference is that the elements we push , we see them right in front of us like 1 after 5 at index 5.
+Like moving everyone in a line one by one to the back of the line until the right person is at the front.
+But in circular queue using array , that would have been different , even if circular queue was implemented by linked list , it would still not change the index like here.
+Circular Queue by rotation also solves many problems.
+Cons :
+How it works: It is a "logical" circle. The data is physically moving in memory. Every time you pop and push, the CPU has to write that data to a new memory location.
+The Cost: If you have 1,000,000 elements and you want to move the "last" to the "front," you perform 999,999 deletions and 999,999 insertions.
+Complexity: A single "rotation" to reach a specific element becomes O(N).
+A True Circular Queue is the one that we implemented using arrays (using modulo math that keeps O(1) ).
+
+
+So if we want to save space and not the kind of rotation by using linear queue, then circular queue by array is the best option.
+If we want the circular behavior of rotation for a queue (Simulation-Based) , then we perform rotation on linear queue.
+Circular Queue by list is avoided as it pointers are overhead and slow as nodes are scattered in the memory and also it doesn't behave like a true circular queue that we want (like by array).Its just like working with a circular linked list.
+
