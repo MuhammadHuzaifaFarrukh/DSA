@@ -9,3 +9,13 @@ Circular Queue by array is the most standard option we can do.
 By using Linked List , we can only achieve the circular linked list , making our queue as circular linked list not as circular queue.
 
 Circular Queue in C++ is not present , it is a linear data structure and a custom data structure rather than derived one.
+
+E.g : Initial Size  = 10
+q = [1,2,3,4,5,6,7,8,9]			// F = 1 , R = 9
+pop 2 times : q = [ , ,3,4,5,6,7,8,9]	// F = 3 , R = 9
+
+Now push 10 : q = [10, ,3,4,5,6,7,8,9]	// F = 3 , R = 10
+Now push 11 : q = [10,11,3,4,5,6,7,8,9] // F = 3 , R = 11
+
+Now Size filled.
+Now push 12 : q = [10,11,3,4,5,6,7,8,9,12,  More Space Allocated]	// F = 3 , R = 12
