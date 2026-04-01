@@ -7,3 +7,20 @@ This structure is often used for buffering data streams where you want to cycle 
 
 Circular Queue in C++ is not present , it is a linear data structure and a custom data structure rather than derived one.
 
+E.g : We only have Rear pointer in this.
+Push A
+A	// R->A	, Next of A->A
+
+Push B
+A->B	// R->B ,Next of A->B , Next of B->A
+
+Push C
+A->B->C		// R->C , Next of A->B , Next of B->C , Next of C->A
+
+Pop 	
+B->C		// R->C , Next of B->C , Next of C->B
+
+Push D
+
+B->C->D		// R->D , Next of B->C , Next of C->D , Next of D->A
+D wasn't placed at the space of A as in List we don't have the issues of space , so it's like a circular linked list not like circular queue actual.
