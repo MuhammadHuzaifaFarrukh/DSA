@@ -1,7 +1,9 @@
 #include <iostream>
 #include <stack>
+#include <limits.h>
 using namespace std;
 
+// Used Insertion Sort (Natural) O(n^2):
 void sortStack(stack<int> &s)
 {
     stack<int> tmpStack;
@@ -29,23 +31,116 @@ void sortStack(stack<int> &s)
     }
 }
 
+// Bubble Sort O(n^2):
+void bubbleSortStack(stack<int> &s)
+{
+    int n = s.size();
+
+    for (int pass = 0; pass < n - 1; pass++)
+    {
+        stack<int> tmpStack;
+
+        for (int i = 0; i < n - 1 - pass; i++)
+        {
+            int first = s.top();
+            s.pop();
+            int second = s.top();
+            s.pop();
+
+            // larger goes down (to tmpStack first)
+            if (first > second)
+            {
+                tmpStack.push(first);
+                s.push(second);
+            }
+            else
+            {
+                tmpStack.push(second);
+                s.push(first);
+            }
+        }
+
+        // pour tmpStack back to s
+        while (!tmpStack.empty())
+        {
+            s.push(tmpStack.top());
+            tmpStack.pop();
+        }
+    }
+}
+
+// Selection Sort O(n^2):
+void selectionSortStack(stack<int> &s)
+{
+    int n = s.size();
+
+    for (int pass = 0; pass < n - 1; pass++)
+    {
+        // Step 1: find minimum
+        stack<int> tmpStack;
+        int size = s.size();
+        int minVal = INT_MAX;
+
+        // find min
+        for (int i = 0; i < size; i++)
+        {
+            int curr = s.top();
+            s.pop();
+            if (curr < minVal)
+                minVal = curr;
+            tmpStack.push(curr);
+        }
+
+        // pour back to s
+        while (!tmpStack.empty())
+        {
+            s.push(tmpStack.top());
+            tmpStack.pop();
+        }
+
+        // Step 2: remove minVal from s
+        bool removed = false;
+        for (int i = 0; i < size; i++)
+        {
+            int curr = s.top();
+            s.pop();
+            if (curr == minVal && !removed)
+            {
+                removed = true; // skip it (removes it)
+            }
+            else
+            {
+                tmpStack.push(curr);
+            }
+        }
+
+        // pour back to s
+        while (!tmpStack.empty())
+        {
+            s.push(tmpStack.top());
+            tmpStack.pop();
+        }
+
+        // Step 3: push minVal to bottom
+        // to send to bottom, pour everything to tmp, push min, pour back
+        while (!s.empty())
+        {
+            tmpStack.push(s.top());
+            s.pop();
+        }
+        tmpStack.push(minVal);
+        while (!tmpStack.empty())
+        {
+            s.push(tmpStack.top());
+            tmpStack.pop();
+        }
+    }
+}
+
+// Use a vector to take all stack elements and then sort them efficiently and then again put back in the stack.
+
 int main()
 {
-    stack<int> s;
-
-    s.push(4);
-    s.push(6);
-    s.push(1);
-    s.push(2);
-    s.push(9);
-    s.push(5);
-
-    sortStack(s);
-    while (!s.empty())
-    {
-        cout << s.top() << endl;
-        s.pop();
-    }
 
     return 0;
 }
