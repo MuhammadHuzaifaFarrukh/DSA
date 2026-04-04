@@ -154,9 +154,16 @@ public:
         return *this;
     }
 
-    bool empty() const { return count == 0; }
+    bool empty() const 
+    { 
+        return count == 0; 
+        // return REAR == -1 ; // Also works since we reset Rear in the pop() function.
+    }
 
-    bool full() const { return REAR == CAP - 1; }
+    bool full() const 
+    { 
+        return REAR == CAP - 1; 
+    }
 
     int size() const { return count; }
 
@@ -166,9 +173,21 @@ public:
         {
             throw std::out_of_range("Queue Underflow");
         }
-        FRONT++; // Simply move the front pointer
-        count--; // Decrement active count
-        // Shrinking logic removed
+        else
+        {
+            // This allows you to reset Front and Rear once Front and Rear are equal and we still pop that makes Front ahead of Rear so we reset them because we know that if Front = Rear , there is only 1 element left.
+            // This allows you to check Rear = -1 for isEmpty() instead of count
+            if(FRONT == REAR)
+            {
+                FRONT = 0;
+                REAR = -1;
+            }
+            else
+            {
+                FRONT = FRONT+1;
+            }
+            count--;
+        }
     }
 
     void push(T val)
