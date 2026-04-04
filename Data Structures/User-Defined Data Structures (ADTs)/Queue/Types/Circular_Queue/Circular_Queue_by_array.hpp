@@ -88,9 +88,9 @@ public:
         other.count = 0;
     }
 
-    bool empty() const { return count == 0; }
-    bool full() const { return count == CAP; }
-    int size() const { return count; }
+    bool empty() const { return count == 0; }   // Can also do Rear = -1 , if we have resetted Front = 0 and Rear = - 1 in pop() function
+    bool full() const { return count == CAP; }  // If we didn't have count , then we would use : (Rear + 1) % n == Front
+    int size() const { return count; }          // For size , the count variable is convenient.
 
     void push(const T &val)
     {
@@ -108,6 +108,9 @@ public:
     {
         if (empty())
             throw std::out_of_range("Queue Underflow");
+        // You can also put Front = 0 and Rear = -1 when they both meet and we pop and then we can easily check our isEmpty() function by Rear = -1 instead of checking count 
+        
+
         // Simply move FRONT forward using modulo
         FRONT = (FRONT + 1) % CAP;
         count--;
