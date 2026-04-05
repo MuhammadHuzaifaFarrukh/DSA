@@ -1,0 +1,22 @@
+Circular queues solve the "wastage of space" problem in static arrays. 
+You use these when memory is tight or fixed.
+
+
+Resource Sharing: In embedded systems or OS kernels (like your i7's interrupt handling).
+
+Traffic Light Simulation: Anything that cycles back to the start after the last element.
+
+Memory Buffers (Ring Buffers): Streaming audio or video data where old data is constantly replaced by new data.
+
+
+Use circular queue whenever:
+
+Elements need to cycle back after processing
+You need fixed memory with no waste (raw array)
+System works in rounds/turns repeatedly
+Any round-robin style problem
+Tickets Booking
+Rotating Schedules
+Things need to rotate (playlists, tasks, players) 
+
+Use linear queue whenever elements flow strictly one way — in from rear, out from front — and never come back! The moment an element cycles back to rear, it becomes a circular queue problem! 
