@@ -1,0 +1,17 @@
+Priority queues don't care about the order of entry; they only care about the value.
+
+
+Usage of Priority Queue :
+ 1) Hospital Emergency
+ 2) Food VIP System
+ 3) Calculate Any Max Score
+ 4) Take Highest Profit
+ 5) Connect Ropes in Minimum Cost
+ 6) Seats Selling for Max Price
+ 7) Dijkstra’s Algorithm: Finding the shortest path in a graph.
+ 8) Top 'K' Elements: Finding the "Kth largest" or "K most frequent" elements in a stream or in an array (1D or 2D or more).
+ 9) Huffman Coding: Used in data compression (like ZIP files).
+10) Merging K Sorted Lists: Efficiently combining multiple sorted arrays into one.
+
+
+Use PQ when you need to repeatedly find max/min efficiently — whether data changes or not. Avoid PQ only when a single sort or linear scan solves it completely!
