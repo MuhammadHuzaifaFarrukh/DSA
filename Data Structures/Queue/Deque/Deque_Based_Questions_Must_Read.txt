@@ -1,0 +1,9 @@
+Deque is the "hybrid." Use it when you need O(1) access at both ends.
+
+Use Deque When :
+1) Navigate back AND forward
+2) Sliding Window Maximum/Minimum: This is a famous interview question. You use a deque to keep track of indices of elements in the current window in O(N) time.	(Monotonic Deque)
+3) A-Steal Job Scheduling: Where a processor "steals" tasks from the back of another processor's queue.
+4) Undo/Redo Operations: Where you might add to the history but also need to clear the oldest history from the other end.
+5) Browser History
+6) Palindrome Checking: Comparing the first and last characters iteratively.
