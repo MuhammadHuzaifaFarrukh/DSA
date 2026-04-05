@@ -7,6 +7,7 @@ using namespace std;
 // Balanced String is given
 // The Outer Parentheses will double the score (like multiplier).
 // Empty Parentheses will be used in score.
+// We are treating the string as stack (Here there is no use of actual std::stack).
 int scoreOfParenthesis(string s)
 {
     int score = 0;
