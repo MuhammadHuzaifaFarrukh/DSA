@@ -1,0 +1,10 @@
+Monotonic Queue :
+A monotonic queue is a queue where elements are always maintained in either increasing or decreasing order from front to rear.
+
+Two Types:
+Monotonic Increasing has Order : front → rear (small to big) and Front holds Minimum element.
+Monotonic Decreasing has Order : front → rear (big to small) and Front holds Maximum element.
+
+We can have either a monotonic queue , deque , circular queue.
+And it is implemented using the original queues , deques , circular queues so its not a new Data Structure but just a Comparison Rule.
+It is helpful in solving Sliding Window Max Questions.
