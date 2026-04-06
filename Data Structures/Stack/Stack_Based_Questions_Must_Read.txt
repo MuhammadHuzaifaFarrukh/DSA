@@ -22,11 +22,17 @@ The Rule: Before pushing x, you must pop() everything that is greater than x.
 The Rule: Before pushing x, you must pop() everything that is smaller than x.
 
 Where to use Stack for Questions : 
-1) Recursion Based (Not Usually but still)
-2) Nearest / Next Greater / Smaller Element	(By Monotonic Stack)
-3) Expressions Conversion (Infix , Prefix , Postfix)
-4) Expression Evaluation (Infix , Prefix , Postfix)
-5) Parenthesis Evaluation
+ 1) Recursion Based (Not Usually but still)
+ 2) Nearest / Next Greater / Smaller Element	(By Monotonic Stack)
+ 3) Expressions Conversion (Infix , Prefix , Postfix)
+ 4) Expression Evaluation (Infix , Prefix , Postfix)
+ 5) Parenthesis Evaluation
+ 6) Backtracking (DFS)
+ 7) Undo / Redo Mechanisms 	(2 Stacks or doubly linked list better than deque )
+ 8) Browser History		(Doubly Linked List or Deque better)
+ 9) Syntax Parsing
+10) String Reversal
+11) Task Switching in OS
 (String Related Questions are usually handled by Stack)
 
 In this folder you will find all the stack based questions , with the applications listed above. 
