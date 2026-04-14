@@ -4,7 +4,7 @@ Usage of Linear Queue :
 1) Breadth-First Search (BFS): This is the #1 use case. To traverse a graph or tree level-by-level, you must use a queue.
 2) Level Order Traversal: Specifically for binary trees.
 3) Buffer/Task Scheduling: Simulating CPU task scheduling 
-4) Sliding Window (Specific cases): When you need to maintain a "window" of elements and remove from the start while adding to the end.
+4) Sliding Window (Specific cases): When you need to maintain a "window" of elements and remove from the start while adding to the end. (Deque can also be used or a priority queue though deque stands better)
 5) Ticket Counter
 6) Strictly Increasing Sequence
 7) Printer Queue
