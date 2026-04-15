@@ -11,7 +11,8 @@ Usage of Priority Queue :
  7) Dijkstra’s Algorithm: Finding the shortest path in a graph.
  8) Top 'K' Elements: Finding the "Kth largest" or "K most frequent" elements in a stream or in an array (1D or 2D or more).
  9) Huffman Coding: Used in data compression (like ZIP files).
-10) Merging K Sorted Lists: Efficiently combining multiple sorted arrays into one.
+10) Sorting the elements by Frequency (Any sorting on basis of a factor)
+11) Merging K Sorted Lists: Efficiently combining multiple sorted arrays into one.
 
 
 Use PQ when you need to repeatedly find max/min efficiently — whether data changes or not. Avoid PQ only when a single sort or linear scan solves it completely!
