@@ -5,6 +5,7 @@ using namespace std;
 
 // Different Variants of this problem are.
 // First one is the simple which asks to find the next greater of each nums[i] and if we can't find then store -1 there
+// The Last ELement will always have -1 as there is no element to its right.
 
 // 1) Use Brute Force : O(n^2)
 
