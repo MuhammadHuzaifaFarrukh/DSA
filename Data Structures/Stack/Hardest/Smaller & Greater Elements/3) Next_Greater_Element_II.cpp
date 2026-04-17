@@ -4,6 +4,11 @@
 #include <vector>
 using namespace std;
 
+// This is another variant of next greater element.
+// We have to find the next greater element for each element , even if we can find for last element
+// We have to treat our given array as circular array.
+
+
 // We treat nums1 and num2 = nums only
 // And Find the next greater for each element in the nums by treating it as circular array.
 // Total elements 'n' so we check each element 2*n-1 times .
