@@ -4,6 +4,9 @@
 #include <vector>
 using namespace std;
 
+// This one is another variant of the stack question of next greater element.
+// For each element in nums1, you must find its position in nums2 and then find the first element to its right in nums2 that is greater than it.
+
 vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
 {
     int n2 = nums2.size();
@@ -41,12 +44,12 @@ vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
 
 int main()
 {
-    vector<int>v1 = {4,1,2} , v2 = {1,6,4,2};
-    vector<int> v3 = nextGreaterElement(v1,v2);
-    for(int i : v3)
+    vector<int> v1 = {4, 1, 2}, v2 = {1, 6, 4, 2};
+    vector<int> v3 = nextGreaterElement(v1, v2);
+    for (int i : v3)
     {
-        cout<<i<<" ";
+        cout << i << " ";
     }
-    cout<<endl;
+    cout << endl;
     return 0;
 }
