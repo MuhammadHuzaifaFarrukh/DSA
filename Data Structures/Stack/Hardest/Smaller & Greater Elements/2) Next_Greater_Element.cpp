@@ -6,6 +6,7 @@ using namespace std;
 
 // This one is another variant of the stack question of next greater element.
 // For each element in nums1, you must find its position in nums2 and then find the first element to its right in nums2 that is greater than it.
+// The Last ELement will always have -1 as there is no element to its right.
 
 vector<int> nextGreaterElement(vector<int> &nums1, vector<int> &nums2)
 {
