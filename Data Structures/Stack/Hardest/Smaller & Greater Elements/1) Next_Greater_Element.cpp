@@ -4,14 +4,13 @@
 using namespace std;
 
 // Different Variants of this problem are.
-// First one is the simple which asks to find the next greater of each nums[i] and if we can't find then store -1 there
+// First one is the simple which asks to find the next greater of each nums[i] on right and if we can't find then store -1 there
 // The Last ELement will always have -1 as there is no element to its right.
 
 // 1) Use Brute Force : O(n^2)
 
-
 // 2) Using Stack (Monotonic Stack): O(n)
-
+// We keep those elements' indexes in the stack whose next greater we have to find (in descending order).
 // We store the indices of the elements of nums in stack which would correspond to numbers in descending order.
 // We then check the next elements if we find any greater one , we go to the index stored in stack and check them if the current value is their next or not.
 // Since we push each element only once , and then pop each element once , each element goes through only two operations (push and pop) once.
@@ -33,14 +32,45 @@ vector<int> next_greater(vector<int> &nums)
     return ans;
 }
 
+// 2) Checking from backwards using Stack : O(n)
+// Similar to above but this time we check from the nums.size() - 1.
+vector<int> next_greater2(vector<int> &nums)
+{
+    stack<int> st;
+    vector<int> ans(nums.size(), -1);
+    for (int i = nums.size() - 1; i >= 0; i--)
+    {
+        while (!st.empty() && nums[st.top()] <= nums[i])
+        {
+            st.pop();
+        }
+        if (!st.empty())
+        {
+            ans[i] = nums[st.top()];
+        }
+        st.push(i);
+    }
+    return ans;
+}
+
 int main()
 {
     vector<int> v = {8, 6, 4, 7, 4, 9, 10, 8, 12};
-    v = next_greater(v);
+    v = next_greater2(v);
     for (int i = 0; i < v.size(); i++)
     {
-        cout<<v[i]<<" ";
+        cout << v[i] << " ";
     }
-    cout<<endl;
+    cout << endl;
     return 0;
 }
+
+// There are total 4 ways to solve the smaller / greater number on left / right sides.
+// If we have to find smaller at left then for last to left side , iterate from size()-1 to 0.
+// If we have to find smaller at left then for first to right side , iterate from 0 to size()-1 with some changed method that we saw above.
+// If we have to find smaller at right then for first to right side , iterate from 0 to size()-1.
+// If we have to find smaller at right then for last to left side , iterate from size()-1 to 0 with some changed method that we saw above.
+
+// All use Monotonic Stack.
+
+// All of these hold true for next greater element either at left or right side.
