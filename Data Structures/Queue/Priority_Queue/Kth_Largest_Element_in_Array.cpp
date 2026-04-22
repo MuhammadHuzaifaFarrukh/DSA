@@ -4,7 +4,13 @@
 #include <MaxHeap.hpp>
 using namespace std;
 
-// Max-Heap Approach
+// 1) The Traditional Approach of comparisons.
+// We compare and keep finding the kth element , but that method would require manual checks (say 100th max element would require 100 manual if-else for O(n) Time)
+// If we decide to put those manual checks in another loop , then it would go to O(n*k).
+
+
+
+// 2) Max-Heap Approach
 // Pop k-1 elements and then the kth largest will be at top
 // Time Complexity : N + KLogn = O(N) if K is relatively small or O(NLogn) if K is large
 // Best When K is relatively small.
@@ -34,7 +40,7 @@ int findKthLargest(vector<int> &nums, int k)
     return 0;
 }
 
-// A little bit optimized using min-heap :
+// 3) A little bit optimized using min-heap :
 // Time Complexity : K + 2(N-K)Logk = K + NLogk - LLogk = O(NLogk)    
 // Don't add all the elements in heap , instead just keep K largest elements in heap
 // Best when K is too large.
