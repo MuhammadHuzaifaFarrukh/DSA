@@ -131,6 +131,42 @@ public:
 
     ~List() { clear_list(); }
 
+    T &at(int index)
+    {
+        // 1. Bounds Checking
+        if (index < 0 || index >= size)
+        {
+            throw std::out_of_range("Index out of bounds");
+        }
+
+        // 2. Traversal
+        Node<T> *curr = head;
+        for (int i = 0; i < index; i++)
+        {
+            curr = curr->next;
+        }
+
+        // 3. Return a reference to the data
+        return curr->data;
+    }
+
+    // Const version (for read-only lists)
+    const T &at(int index) const
+    {
+        if (index < 0 || index >= size)
+        {
+            throw std::out_of_range("Index out of bounds");
+        }
+
+        Node<T> *curr = head;
+        for (int i = 0; i < index; i++)
+        {
+            curr = curr->next;
+        }
+
+        return curr->data;
+    }
+
     bool is_empty() const { return head == nullptr; }
     int get_size() const { return size; }
 
@@ -638,5 +674,76 @@ public:
             other.head = other.tail = nullptr;
             other.size = 0;
         }
+    }
+
+    // Returns the index of the value, or -1 if not found
+    int linear_search(const T &key) const
+    {
+        Node<T> *curr = head;
+        int index = 0;
+
+        while (curr != nullptr)
+        {
+            if (curr->data == key)
+            {
+                return index;
+            }
+            curr = curr->next;
+            index++;
+        }
+        return -1; // Not found
+    }
+
+    // Helper function to find the middle node in a specific range
+    Node<T> *get_middle(Node<T> *start, Node<T> *end) const
+    {
+        if (start == nullptr)
+            return nullptr;
+
+        Node<T> *slow = start;
+        Node<T> *fast = start->next;
+
+        while (fast != end)
+        {
+            fast = fast->next;
+            if (fast != end)
+            {
+                slow = slow->next;
+                fast = fast->next;
+            }
+        }
+        return slow;
+    }
+
+    // Binary Search requires Middle element.
+    // Binary Search is not efficient for linked list.
+    // Linear Search is efficient as this one takes O(nlogn)
+    int binary_search(const T &key) const
+    {
+        // Binary Search ONLY works if the list is sorted!
+        Node<T> *start = head;
+        Node<T> *end = nullptr;
+
+        while (start != end)
+        {
+            Node<T> *mid = get_middle(start, end);
+
+            if (mid == nullptr)
+                return false;
+
+            if (mid->data == key)
+            {
+                return true;
+            }
+            else if (mid->data < key)
+            {
+                start = mid->next;
+            }
+            else
+            {
+                end = mid;
+            }
+        }
+        return false;
     }
 };
