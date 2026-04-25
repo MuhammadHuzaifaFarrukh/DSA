@@ -746,4 +746,14 @@ public:
         }
         return false;
     }
+    void display()
+        {
+            Node *temp = head;
+            while(temp!=nullptr)
+            {
+                cout<<temp->val<<" ";
+                temp = temp->next;
+            }
+            cout<<endl;
+        }
 };
