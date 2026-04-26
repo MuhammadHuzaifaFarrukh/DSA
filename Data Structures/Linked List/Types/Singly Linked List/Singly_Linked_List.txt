@@ -1,0 +1,28 @@
+// Linked list is a Data Structure that is made of nodes.
+// Each Linked List is a group of nodes and we access list using its head.
+// We can have multiple nodes in a class and then wrap them around in either a single class or another class.
+// Here we implemented it using two classes which is a good and standard way.
+// For a single class , we would have to implement each logic in complex way.
+// For single class , we will have to implement its head and other nodes by ourself in main and then for any other function of list , we will first
+// have to make in Node class and then call in main by passing the head pointer.
+
+// Here we have a Node class which contains data and next pointer that points to the next Node.
+// Then we have a LinkedList class which contains the head that points to first node (and tail which points to last Node).
+// The tail pointer is usually optional but we make it just for our ease so that push_back beomes O(1).
+// We have 3 types of list : Singly , Doubly , Circular.
+// Circular List can be Singly or Doubly as well.
+
+// Here we implement the Singly Linked List.
+// In C++ , we have it as : <forward_list>
+// It is a linear data structure and sequential container.
+// It is more efficient than a vector in a way that we only use the nodes (data) that we want and no other extra space
+// In vector we have many space for extra elements that may or may not be used.
+// Lists are generally better than our vectors and deque in insertion , extraction and moving elements.
+// The main drawback of list is that we can't access the element directly in list as using [] or .at() like vectors in O(1).
+// The forward_list in C++ doesn't even have a .size() function , and we may need to find its size in O(n) or by storing another counter variable.
+
+In Singly Linked List :
+Insertion at head and tail are done in O(1) Time.
+Deletion at head is also done in O(1) Time.
+Deletion at tail is done in O(n) Time.
+If we don't have a tail pointer then insertion at tail would also take O(n) Time instead of O(1).
