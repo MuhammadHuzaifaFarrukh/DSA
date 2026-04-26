@@ -1,0 +1,20 @@
+In linked list manipulation, dummy nodes (also called sentinel nodes) are your "safety net." They are temporary nodes used to simplify edge cases where the head of the list might change.
+
+Without a dummy node, you often have to write separate if statements to handle the first node differently from the rest of the list. With a dummy node, the first real node is treated exactly like every other node.
+
+
+It is used in :
+1) Merging Lists
+2) Deleting Nodes
+3) Partitioning a List
+4) System Design (LRU Cache)
+and More etc.
+
+When NOT to use them :
+1) Memory Constraints
+2) Simple Traversals
+
+
+Always use the Stack-Allocated Dummy rather than the Heap-Allocated one to avoid memory leaks:
+Heap (Risky): Node* dummy = new Node(0); (You must delete this later).
+Stack (Safe): Node dummy(0); (This is destroyed automatically when the function ends).
