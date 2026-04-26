@@ -1,0 +1,29 @@
+// ============================================================
+//  Doubly Linked List — Templated Implementation
+// ============================================================
+// A doubly linked List is a sequential container and a linear data structure where every DNode
+// holds a pointer to both the NEXT and the PREVIOUS DNode.
+//
+// Advantages over Singly Linked List:
+//   - Backward traversal is O(1) per step instead of impossible.
+//   - pop_back() is O(1) because we can reach the second-to-last
+//     DNode directly via tail->prev (no O(n) walk needed).
+//   - insert_before() and erase at a known DNode are O(1).
+//   - Bi-directional iterators (both ++ and --) work naturally.
+//
+// Disadvantages:
+//   - Each DNode uses one extra pointer (8 bytes on 64-bit), so
+//     memory per DNode is slightly larger than a singly DList.
+//   - Every insertion/deletion must keep TWO pointers consistent
+//     (next AND prev), so the logic has more steps to get right.
+//
+// In C++ STL this is <list> (std::list<T>).
+//
+// Structure used here:
+//   [ head ] <-> [ DNode ] <-> [ DNode ] <-> [ tail ] <-> nullptr
+//   head->prev == nullptr   tail->next == nullptr
+//
+// Two-class design (same as singly List template):
+//   DNode<T>   — the DNode (val, prev, next)
+//   DList<T>   — the container (head, tail, size + all operations)
+// ============================================================
