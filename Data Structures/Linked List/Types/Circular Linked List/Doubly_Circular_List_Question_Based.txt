@@ -17,6 +17,11 @@
 //   - It is a linear data structure.
 // ============================================================
 
+// We can implement a circular linked list as either doubly or singly.
+// If we remove the loop , it becomes doubly or singly linked list.
+// It has real world applications instead of typical questions.
+// It acts like a circular queue (simulation / modulo array based).
+// The applications of such a data structure can also be handled by a circular queue as well (or others).
 
 Use doubly circular linked list when :
 Rule: You need to loop endlessly AND go BACKWARDS.
