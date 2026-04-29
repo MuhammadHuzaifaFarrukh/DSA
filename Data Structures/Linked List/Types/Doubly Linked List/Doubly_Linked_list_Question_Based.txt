@@ -28,6 +28,8 @@
 //   DList<T>   — the container (head, tail, size + all operations)
 // ============================================================
 
+// Doubly Linked List can be implemented as two pointers (prev and next) , or as addition / subtraction / XORList (where we store both prev and next using +,-,^ of prev and next saving space of two pointers in it).
+// It can be implemented as a circular linked list also.
 
 // Use Doubly Linked List only when :
 Rule: You need to go BACKWARDS, or delete from tail in O(1).
@@ -38,3 +40,4 @@ Rule: You need to go BACKWARDS, or delete from tail in O(1).
 5) Deque Implementation : Insert/delete at both ends in O(1)
 6) Music Player (prev/next song) : Bidirectional navigation 
 7) Flatten a Multilevel Doubly List : Needs prev pointer to reconnect
+8) Loops Detection and Removal is also done in this.
