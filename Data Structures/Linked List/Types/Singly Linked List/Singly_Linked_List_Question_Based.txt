@@ -26,3 +26,19 @@ Insertion at head and tail are done in O(1) Time.
 Deletion at head is also done in O(1) Time.
 Deletion at tail is done in O(n) Time.
 If we don't have a tail pointer then insertion at tail would also take O(n) Time instead of O(1).
+
+// Singly Linked List can be also implemented into a doubly or circular depending on what we want.
+// We can implement it using only a head pointer as well (instead of adding both head and tail though it makes insertion at tail in O(1)).
+
+Use Singly Linked List only when :
+Rule: You only ever move FORWARD and deletion from tail is rare.
+1) Implementing a Stack : Push/pop at head → both O(1)
+2) Implementing a Queue : Insert at tail, delete at head → both O(1) with tail pointer
+3) Detecting a cycle (Floyd's Algorithm)Only forward traversal needed
+4) Reversing a linked list : One direction is enough
+5) Merging two sorted lists : Forward traversal only
+6) Finding middle of list : Slow/fast pointer, forward only
+7) Palindrome check on list : Reverse second half, forward compare
+8) LRU Cache (basic) : Forward chain is sufficient
+
+
