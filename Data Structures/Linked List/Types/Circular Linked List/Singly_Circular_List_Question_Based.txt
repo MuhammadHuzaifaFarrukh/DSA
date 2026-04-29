@@ -1,0 +1,27 @@
+// ============================================================
+//  Singly Circular Linked List
+// ============================================================
+// Same as Singly Linked List except:
+//   - tail->next points back to head instead of nullptr.
+//   - There is no nullptr anywhere in the chain.
+//   - Traversal must stop when we come back to head, NOT when we hit nullptr.
+//
+// Structure:
+//   head -> [1] -> [2] -> [3] -> [4] -> (back to head)
+//
+// Use case : Round-robin scheduling, circular buffers, playing song from playlist any problem
+// where you want to keep looping over elements endlessly.
+//
+// In C++ STL there is no direct circular list container.
+// However , it is a linear data structure.
+// ============================================================
+
+
+Use Singly Circular Linked List when :
+Rule: You need to loop endlessly in ONE direction.
+1) Round-Robin CPU Scheduling : Cycle through processes endlessly
+2) Circular Buffer / Ring Buffer : Wrap around when reaching end
+3) Playlist (next only, loops back) : After last song → back to first
+4) Josephus Problem : Classic circular elimination problem
+5) Token passing in a network ring : Packets cycle through nodes
+6) Detecting & Removing Loops etc.
