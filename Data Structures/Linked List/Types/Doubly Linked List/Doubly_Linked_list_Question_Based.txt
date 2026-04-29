@@ -27,3 +27,14 @@
 //   DNode<T>   — the DNode (val, prev, next)
 //   DList<T>   — the container (head, tail, size + all operations)
 // ============================================================
+
+
+// Use Doubly Linked List only when :
+Rule: You need to go BACKWARDS, or delete from tail in O(1).
+1) Browser History (Back & Forward) : Need to move both directions
+2) Undo / Redo Mechanism : Go back to previous, forward to redo
+3) LRU Cache (optimal) : O(1) delete anywhere using prev pointer
+4) Text Editor Cursor Movement : Move left and right through characters
+5) Deque Implementation : Insert/delete at both ends in O(1)
+6) Music Player (prev/next song) : Bidirectional navigation 
+7) Flatten a Multilevel Doubly List : Needs prev pointer to reconnect
