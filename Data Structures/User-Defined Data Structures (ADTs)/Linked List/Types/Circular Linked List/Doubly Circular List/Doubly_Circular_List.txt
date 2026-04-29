@@ -1,0 +1,18 @@
+//  Doubly Circular Linked List
+// ============================================================
+// Same as Doubly Linked List except:
+//   - tail->next points back to head  (instead of nullptr)
+//   - head->prev points back to tail  (instead of nullptr)
+//   - There is no nullptr anywhere in the chain.
+//   - Traversal must stop when we come back to head, NOT nullptr.
+//
+// Structure:
+//   (tail) <-> [1] <-> [2] <-> [3] <-> [4] <-> (back to head)
+//      ^___________________________________________________|
+//
+// Advantage over Singly Circular:
+//   - pop_back() is O(1) because tail->prev gives the second-to-last node.
+//   - Can traverse backwards just like doubly list.
+//   - There is no STL for this in C++.
+//   - It is a linear data structure.
+// ============================================================

@@ -1,0 +1,17 @@
+// ============================================================
+//  Singly Circular Linked List
+// ============================================================
+// Same as Singly Linked List except:
+//   - tail->next points back to head instead of nullptr.
+//   - There is no nullptr anywhere in the chain.
+//   - Traversal must stop when we come back to head, NOT when we hit nullptr.
+//
+// Structure:
+//   head -> [1] -> [2] -> [3] -> [4] -> (back to head)
+//
+// Use case : Round-robin scheduling, circular buffers, playing song from playlist any problem
+// where you want to keep looping over elements endlessly.
+//
+// In C++ STL there is no direct circular list container.
+// However , it is a linear data structure.
+// ============================================================

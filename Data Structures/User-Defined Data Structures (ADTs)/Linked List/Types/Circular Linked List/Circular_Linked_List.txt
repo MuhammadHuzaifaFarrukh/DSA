@@ -1,0 +1,14 @@
+Circular Linked List is a List in which there is a loop or cycle in nodes.
+In a traditional list we have 1->2->3->4->5 and so on.
+But in a Circular Linked List we have : 1->2->3->4->5->1 (Back to head).
+
+The next pointer of tail instead of being null , is pointed to head.
+
+There are two types of Circular Linked List.
+1) Singly Circular	(Last Node points to First Node)
+2) Doubly Circular	(First Node points to Last and Last Node points to First)
+
+In C++ , there is no STL for circular linked list.
+However we can make our own ADT using the singly and doubly linked lists.
+Circular Linked List is also a linear data structure.
+
