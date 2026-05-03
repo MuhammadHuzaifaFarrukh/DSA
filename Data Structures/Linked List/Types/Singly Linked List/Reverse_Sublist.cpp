@@ -11,8 +11,7 @@ class Node
 public:
     int data;
     Node *next;
-    Node *random;
-    Node(int data = 0, Node *temp = nullptr, Node *b = nullptr) : data(data), next(temp), random(b) {}
+    Node(int data = 0, Node *temp = nullptr) : data(data), next(temp) {}
 };
 
 class List
