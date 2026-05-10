@@ -1,4 +1,5 @@
 Priority queues don't care about the order of entry; they only care about the value.
+Logically it is a queue , but structurally it is a tree (CBT).
 
 
 Usage of Priority Queue :
