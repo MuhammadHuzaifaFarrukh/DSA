@@ -1,0 +1,13 @@
+The number of structurally different possible binary trees with 'n' nodes is :
+
+(1/(n+1)) * (2n C n)
+
+If you don't know formula , you will have to find using recursive memorization.
+You need to fix the root and then count (-1) the possible nodes that can be at left or right.
+Now E.g for 4 Nodes , we fix 1 node at root and now arrange 3 nodes.
+We say 0 at left , 3 at right 
+We say 1 at left , 2 at right
+We say 2 at left , 1 at right
+We say 3 at left , 0 at right
+Then we count them all and get our answer.
+For each 1,2,3 at left/right , we can do the same (i.e. fix the node and arrange the other two nodes again).

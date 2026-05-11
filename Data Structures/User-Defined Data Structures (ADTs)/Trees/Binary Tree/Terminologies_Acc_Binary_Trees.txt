@@ -1,0 +1,39 @@
+Tree is a Data Structure that stores data in hierarchical form. It represents the complex relationships and data that cannot be easily expressed by other simple , linear data structures. It is a non-linear data structure.
+
+Terminologies of Trees :
+Node -> The fundamental building block of a tree that stores data and links to other nodes.
+
+Root -> The top-most node of a tree that has no parent and serves as the starting point.(Can be 0 or 1-based , we usually refer as 0-based).
+
+Parent -> A node that has an outgoing edge connecting it to one or more nodes directly below it. For a parent i , its children are (2i+1 , 2i+2 -> 0-based Root) and (2i,2i+1 -> 1-based Root) in binary tree. 
+
+Children -> Nodes that are directly connected to and positioned below a specific parent node. For a children i , its parent is floor((i-1)/2) for 0-based root and floor((i/2)) for 1-based root.
+
+Leaf -> A node that has no children and represents the "end" of a branch in the tree.
+For a Full Binary Tree (Strict) , the number of Nodes can be found , if we have number of Leaves (L) , then we have the non-leaf as (L-1) , so total nodes : L + (L-1) = 2L-1.
+
+Ancestor -> Any node on the direct path from a specific node back up to the root.
+
+Descendant -> Any node reachable by following edges downward from a specific node to a leaf.
+
+Level -> A measure of the distance from the root, where the root is Level 0 (or 1) and each subsequent step down increases the count. The level of a node is the number of edges from the root to that node: L = Depth of the Node. The Level of a tree : It is the maximum level reached by any leaf node in the tree. The total number of levels is often equal to the Height of the Tree (For 0-based leveling or +1 for 1-based leveling) . In a binary tree, if you want to know the maximum number of nodes that can fit on Level i : Max Nodes <= 2^i. (0-based Leveling).
+For a Perfect Binary Tree (each parent has 2 child and all leaf nodes must be at same level) :Total Nodes : n = 2^(h+1) - 1
+We usually refer level as level of a tree.
+
+Sibling -> Nodes that share the exact same parent node.
+
+Height -> The number of edges on the longest downward path from a node to the deepest leaf. (Height of node). 
+Height of a tree : Measured from the root to the deepest leaf. H (of a tree) = max(Level of all Leaf nodes).  
+H (of a tree) = max(Level of all Leaf nodes). For Binary Trees , the height is : floor(log(n)) base 2.
+For a Perfect Binary Tree : H = log(n + 1) - 1 (base 2).
+For a Full Binary Tree (aka Strictly Binary Tree) (each parent has only 0 or 2 child) with n nodes: Min Height ~ log(n) base 2 , Max Height ~ (n-1)/2. We usually refer height as height of a tree. Degenerated (Skewed) Tree has height = n-1.
+
+
+Depth -> Same as height but Measured from the deepest leaf to the root (Depth of a Tree). Length of the path from the deepest leaf to the specific node (Depth of a Node). Both height and depth yield same result. Because both are same thing , both have same formulas as well.
+
+Degree -> The total number of children linked to a specific node. Degree of a Node: The number of children it has.  Degree of a Tree: The maximum degree of any node in that tree (e.g., in a Binary Tree, the tree degree is 2).
+
+
+Edges -> The connecting lines or links that represent the relationship between a parent and its child. For 'n' nodes tree , there are n-1 edges in it.
+
+

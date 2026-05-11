@@ -1,0 +1,10 @@
+// Min Heap is a type of Heap (Complete Binary Tree).
+// Heap is present in C++ in std::make_heap().
+// Here we implement our own version of heap using array (or vector).
+// Although it can be done through linked list , as we implement any tree.
+// However for Heap , it becomes slow , so we don't actually use linked list , we will use array (or vector).
+// Min Heap contains the lowest element at front
+
+In C++ , Max Heap is a non-linear and a derived container.
+It is known as priority queue as well.
+Logically it is a queue , but structurally it is a tree (CBT).

@@ -1,0 +1,13 @@
+Heap (aka Priority Queue) is a Complete Binary Tree.
+It is a non-linear data structure and a derived container in C++.
+It has two types :
+1) Max Heap
+2) Min Heap
+
+Structurally it is a tree , while logically it's a queue.
+It can be implemented using list or array.
+Array-based implementation (vectors) is more suitable and standard one.
+
+Here you can see two header files named as : "Heap.hpp" and "Priority_Queue.hpp" , so they both are the same one with same functionality.
+Heap.hpp was implemented using T *arr (int , float , char etc.) while Priority_Queue was implemented via vector (standard).
+Since there is no Heap.hpp in C++ , we created our own using array as vector while we implemented Priority Queue as the standard one present in C++ (using vectors).
