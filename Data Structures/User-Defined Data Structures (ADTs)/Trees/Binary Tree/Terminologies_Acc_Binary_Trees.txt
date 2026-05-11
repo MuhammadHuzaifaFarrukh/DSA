@@ -1,4 +1,7 @@
 Tree is a Data Structure that stores data in hierarchical form. It represents the complex relationships and data that cannot be easily expressed by other simple , linear data structures. It is a non-linear data structure.
+Binary Trees are trees that have at most 2 child for each node.
+It can be implemented as linked list or even as array / vector (depending on use).
+There is no C++ STL for it. If there were or if we make , then it will be a derived container.
 
 Terminologies of Trees :
 Node -> The fundamental building block of a tree that stores data and links to other nodes.
