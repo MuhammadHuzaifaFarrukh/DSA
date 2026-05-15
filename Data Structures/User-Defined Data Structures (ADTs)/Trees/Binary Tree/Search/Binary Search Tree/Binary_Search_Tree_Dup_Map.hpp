@@ -130,7 +130,7 @@ public:
         }
     }
 
-    void insert(T val)
+    Node<T> *insert(Node<T> *currRoot, T val)
     {
 
         if (val == -1)
