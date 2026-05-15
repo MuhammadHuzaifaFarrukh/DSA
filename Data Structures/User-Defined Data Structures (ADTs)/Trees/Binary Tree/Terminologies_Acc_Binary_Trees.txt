@@ -1,10 +1,11 @@
 Tree is a Data Structure that stores data in hierarchical form. It represents the complex relationships and data that cannot be easily expressed by other simple , linear data structures. It is a non-linear data structure.
-Binary Trees are trees that have at most 2 child for each node.
-It can be implemented as linked list or even as array / vector (depending on use).
-There is no C++ STL for it. If there were or if we make , then it will be a derived container.
 
 Terminologies of Trees :
 Node -> The fundamental building block of a tree that stores data and links to other nodes.
+For a Binary Tree :
+Total nodes
+n = I₀ + I₁ + I₂
+I₀ = leaves, I₁ = 1-child nodes, I₂ = 2-child nodes
 
 Root -> The top-most node of a tree that has no parent and serves as the starting point.(Can be 0 or 1-based , we usually refer as 0-based).
 
@@ -14,6 +15,7 @@ Children -> Nodes that are directly connected to and positioned below a specific
 
 Leaf -> A node that has no children and represents the "end" of a branch in the tree.
 For a Full Binary Tree (Strict) , the number of Nodes can be found , if we have number of Leaves (L) , then we have the non-leaf as (L-1) , so total nodes : L + (L-1) = 2L-1.
+And Internal Nodes : I = L-1. And Leaf nodes as : L = I+1.
 
 Ancestor -> Any node on the direct path from a specific node back up to the root.
 
@@ -27,7 +29,10 @@ Sibling -> Nodes that share the exact same parent node.
 
 Height -> The number of edges on the longest downward path from a node to the deepest leaf. (Height of node). 
 Height of a tree : Measured from the root to the deepest leaf. H (of a tree) = max(Level of all Leaf nodes).  
-H (of a tree) = max(Level of all Leaf nodes). For Binary Trees , the height is : floor(log(n)) base 2.
+H (of a tree) = max(Level of all Leaf nodes). 
+For Binary Trees , the height is : floor(log(n)) base 2.
+Minimum height for 'n' nodes in a Binary Tree : ceil(log(n) base 2).
+Max height for n nodes : h_max = n − 1
 For a Perfect Binary Tree : H = log(n + 1) - 1 (base 2).
 For a Full Binary Tree (aka Strictly Binary Tree) (each parent has only 0 or 2 child) with n nodes: Min Height ~ log(n) base 2 , Max Height ~ (n-1)/2. We usually refer height as height of a tree. Degenerated (Skewed) Tree has height = n-1.
 
