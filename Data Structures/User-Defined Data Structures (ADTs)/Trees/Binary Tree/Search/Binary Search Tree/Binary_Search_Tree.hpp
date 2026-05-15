@@ -37,7 +37,9 @@ private:
     Node<T> *copyTree(const Node<T> *otherRoot)
     {
         if (!otherRoot)
+        {
             return nullptr;
+        }
 
         try
         {
@@ -50,26 +52,6 @@ private:
         {
             throw;
         }
-    }
-
-    Node<T> *insertHelper(Node<T> *currRoot, T val)
-    {
-        if (val == -1)
-            return currRoot;
-
-        if (!currRoot)
-        {
-            return new Node<T>(val);
-        }
-        if (val < currRoot->val)
-        {
-            currRoot->left = insertHelper(currRoot->left, val);
-        }
-        else if (val > currRoot->val)
-        {
-            currRoot->right = insertHelper(currRoot->right, val);
-        }
-        return currRoot;
     }
 
 public:
@@ -138,17 +120,42 @@ public:
             delete p;
         }
     }
-    void insert(T val)
+
+    Node<T> *insert(Node<T> *currRoot, T val)
     {
-        try
+        if (val == -1)
         {
-            root = insertHelper(root, val);
+            return currRoot;
         }
-        catch (const std::bad_alloc &e)
+
+        if (!currRoot)
         {
-            cerr << "Critical Error: Insertion failed due to memory exhaustion! " << e.what() << endl;
-            throw std::runtime_error("Tree insertion blocked: Out of Memory.");
+            Node<T> *temp;
+            try
+            {
+                temp = new Node<T>(val);
+                return temp;
+            }
+            catch (bad_alloc &e)
+            {
+                cerr << "Critical Error: Insertion failed due to memory exhaustion! " << e.what() << endl;
+                throw std::runtime_error("Tree insertion blocked: Out of Memory.");
+            }
         }
+        if (val < currRoot->val)
+        {
+            currRoot->left = insert(currRoot->left, val);
+        }
+        else if (val > currRoot->val)
+        {
+            currRoot->right = insert(currRoot->right, val);
+        }
+        else
+        {
+            cout << "Already added , cannot insert the same element again , go back " << endl;
+            return currRoot;
+        }
+        return currRoot;
     }
 
     T findMin()
