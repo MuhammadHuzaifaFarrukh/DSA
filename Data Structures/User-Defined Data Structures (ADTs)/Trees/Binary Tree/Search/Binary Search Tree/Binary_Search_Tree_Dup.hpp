@@ -18,7 +18,6 @@ using namespace std;
 // Moreover this implementation is way better than making duplicate nodes once more as inorder traversal may become disturbed in that way as well.
 // If we tried making each duplicate node that would stop in most of the cases even if we decided to keep it at either left or right , it would still not work for most cases. It would not let BST property hold for the nodes.
 
-
 // There's still 1 way to optimize it and that is to keep the count of duplicates only inside an unordered map , in this way the unique valued nodes won't have an int count taking space.
 
 template <typename T>
@@ -130,7 +129,7 @@ public:
         }
     }
 
-    void insert(T val)
+    Node<T> *insert(Node<T> *currRoot, T val)
     {
         if (val == -1)
         {
@@ -155,11 +154,11 @@ public:
 
         if (val < currRoot->val)
         {
-            currRoot->left = insertHelper(currRoot->left, val);
+            currRoot->left = insert(currRoot->left, val);
         }
         else if (val > currRoot->val)
         {
-            currRoot->right = insertHelper(currRoot->right, val);
+            currRoot->right = insert(currRoot->right, val);
         }
         else
         {
@@ -167,7 +166,6 @@ public:
         }
         return currRoot;
     }
-
 
     Node<T> *deleteNode(Node<T> *currRoot, T val)
     {
