@@ -189,6 +189,10 @@ public:
             {
                 insert(2 * i + 2, val);
             }
+            else
+            {
+                cout<<"Already added , cannot add same element again "<<endl;
+            }
         }
         catch (const bad_alloc &e)
         {
