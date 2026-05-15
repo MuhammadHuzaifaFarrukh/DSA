@@ -1,0 +1,31 @@
+Binary Search Tree (BST) is a Binary Tree that keeps elements in specific order.
+Left Child Node < Parent Node < Right Child Node.
+It can be implemented via list or array depending on our use case.
+It has core operations like insertion , deletion or searching.
+
+Usually nodes in BST have unique values (mostly).
+However if there are duplicates (for any specific reason) , then here's how we handle :
+1) Use an unordered map for it , or use an int count in the Node class to keep count of every node there and only delete when its count becomes zero however it becomes costly if all nodes are unique.
+2) Create another node and decide if you want either this Left Child Node <= Parent or Parent <= Right Child Node and stick with any one of it for your tree however this may cost more memory than above one.
+The 2nd method is not used because it is quite bad in a sense that if implemented , it won't let BST property hold for the nodes.
+The 1st method is actually quite good for these kind of tasks.
+
+
+For Inserting an element , we must ensure that all nodes follow the BST Property order.
+For Searching , we do same as inserting.
+For Deletion we make 3 cases : Leaf Node , 1 Child , 2 Child.
+Then we use In-order Predecessor and Successor for 2 Child case to make it into 1 Child or Leaf Node case.
+
+
+If we implement BST using Arrays , we might face issues (we therefore stick with list one ADT , however Array one can be used as well).
+Parent i : 2i+1 , 2i+2 Child
+Child i : (i-1)/2 Parent
+In-order Predecessor : Rightmost node of left subtree
+In-order Successor : Leftmost node of right subtree
+In-order Traversal produces sorted order.
+Structurally unique trees with n nodes : Cₙ = C(2n, n) / (n + 1).
+It is up to you to keep the level indexing starting from 0 or 1. 0-based levels have max nodes at level i <= 2^i.
+Similarly height , if started from level 0 and counted as number of edges becomes : log(n) base 2.
+Depth , Degree all other things also remain same as in a normal binary tree would , in a BST.
+
+
