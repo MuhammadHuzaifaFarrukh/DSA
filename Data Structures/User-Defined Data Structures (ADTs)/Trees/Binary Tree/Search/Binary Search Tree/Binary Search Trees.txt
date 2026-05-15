@@ -26,6 +26,9 @@ In-order Traversal produces sorted order.
 Structurally unique trees with n nodes : Cₙ = C(2n, n) / (n + 1).
 It is up to you to keep the level indexing starting from 0 or 1. 0-based levels have max nodes at level i <= 2^i.
 Similarly height , if started from level 0 and counted as number of edges becomes : floor(log(n) base 2).
+Minimum height for 'n' nodes : ceil(log(n) base 2).
+Maximum height for 'n' nodes : n-1.
+Total Nodes : n = I1 + I2 + I3 where I1 = leaf , I2 = 1 Child , I3 = 2 Child Nodes.
 Depth , Degree all other things also remain same as in a normal binary tree would , in a BST.
 
 
