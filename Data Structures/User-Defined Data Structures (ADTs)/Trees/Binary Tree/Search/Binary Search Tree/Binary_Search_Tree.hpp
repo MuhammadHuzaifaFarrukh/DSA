@@ -105,6 +105,26 @@ public:
         return *this;
     }
 
+    bool searchBST(Node<T> *root, int target)
+    {
+        if (!root)
+        {
+            return 0;
+        }
+        if (root->val == target)
+        {
+            return 1;
+        }
+        if (target < root->val)
+        {
+            return searchBST(root->left, target);
+        }
+        if (target > root->val)
+        {
+            return searchBST(root->right, target);
+        }
+    }
+    
     ~BinarySearchTree()
     {
         destroy_tree(root);
