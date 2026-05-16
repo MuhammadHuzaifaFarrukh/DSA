@@ -7,6 +7,8 @@ It has two types :
 Structurally it is a tree , while logically it's a queue.
 It can be implemented using list or array.
 Array-based implementation (vectors) is more suitable and standard one.
+Because if we try to use a linked list for its implementation , the operations of Heap will go from log(n) to n.
+Heap implementation has a strict rule to be implemented using arrays as CBT have all internal nodes filled except last one which matches array's style and we can access the child and parent using their formulas easily without wasting memory as well. List implementation will only slow down our operations and even the operations and pointer management become quite complex than implementing with array so we use arrays for the implementation.
 
 Here you can see two header files named as : "Heap.hpp" and "Priority_Queue.hpp" , so they both are the same one with same functionality.
 Heap.hpp was implemented using T *arr (int , float , char etc.) while Priority_Queue was implemented via vector (standard).
