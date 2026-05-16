@@ -296,6 +296,28 @@ public:
         }
     }
 
+    bool searchBST(const Node<T> *currRoot, T val) const
+    {
+        if (!currRoot)
+        {
+            return false; // Base case: reached a null branch, value not found
+            throw std::out_of_range("Requested element not Found\n");
+        }
+
+        if (val == currRoot->val)
+        {
+            return true; // Found it!
+        }
+        else if (val < currRoot->val)
+        {
+            return searchBST(currRoot->left, val); // Look in the left subtree
+        }
+        else
+        {
+            return searchBST(currRoot->right, val); // Look in the right subtree
+        }
+    }
+
     Node<T> *get_root() const
     {
         return root;
