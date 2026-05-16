@@ -319,6 +319,37 @@ public:
         }
     }
 
+
+    bool searchBST(const Node<T> *root, T val) const 
+    {
+        if (!root)
+        {
+            return false; 
+        }
+
+        if (val == root->val)
+        {
+            return true;  
+        }
+        else if (val < root->val)
+        {
+            return searchBST(root->left, val); 
+        }
+        else
+        {
+            return searchBST(root->right, val); 
+        }
+    }
+
+    // You may also use the unordered map's function to find the element in O(1) time :
+    /*
+    bool searchBST(T val) const
+    {
+        // If the value exists in the map and its count is greater than 0, it's in the tree
+        auto it = frequencyMap.find(val);
+        return (it != frequencyMap.end() && it->second > 0);
+    }
+    */
     Node<T> *get_root() const
     {
         return root;
