@@ -23,6 +23,9 @@
 // Also not with the std::array , as it is a compile time fixed size , so it will create errors on push/pop functionalities etc.
 // And also not with std::queue , std::stack cause they are already derived containers and hide their functionality while std::priority_queue needs to see the functions.
 
+We implement Priority queue as an array (although list can be used but its not).
+Because if we try to use a linked list for its implementation , the operations of Heap will go from log(n) to n.
+Heap implementation has a strict rule to be implemented using arrays as CBT have all internal nodes filled except last one which matches array's style and we can access the child and parent using their formulas easily without wasting memory as well. List implementation will only slow down our operations and even the operations and pointer management become quite complex than implementing with array so we use arrays for the implementation.
 
 Here you can see two header files named as : "Heap.hpp" and "Priority_Queue.hpp" , so they both are the same one with same functionality.
 Heap.hpp was implemented using T *arr (int , float , char etc.) while Priority_Queue was implemented via vector (standard).
