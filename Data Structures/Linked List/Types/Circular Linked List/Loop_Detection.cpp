@@ -107,9 +107,12 @@ public:
     // It’s the "extra" bit after completing the last full lap.
     // E.g : Slow Pointer moves : t = L + k_1C + m and Fast Pointer moves : 2t = L + k_2C + m
     
-    // To Find where they meet : we subtract them
+    // To Find at which step will they meet from start of the list : we subtract them
     // (2t) - (t) = (L + k_2C + m) - (L + k_1C + m)
     // t = (k2-k1)C , This simplifies to : t is a multiple of C.
+    // This shows that fast pointer will complete k2 iterations of the loop and slow pointer k1 , when they both meet at point 't' from start to the 't' point.
+    // This shows the only difference is the k2 and k1 between these pointers to meet , other things are all same.
+    
 
     void push_front_list(int val)
     {
