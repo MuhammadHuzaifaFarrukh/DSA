@@ -1,8 +1,11 @@
 #include <iostream>
 #include <queue>
-#include <String.hpp>
 using namespace std;
 
+// Return the index of first unique character in the string
+// 1) Brute force approach : Time : O(n^2) , Space : O(1)
+
+// 2) Optimized , using Queue : Time : O(n) , Space : O(n)
 int firstUniqChar(string s)
 {
     int count[26] = {0};
@@ -34,7 +37,7 @@ int main()
 {
     string s = "loveleetcode";
     int i = firstUniqChar(s);
-    cout<<"First Unique Character Index : " <<i<<" which is Character : "<<s[i]<<endl;
+    cout << "First Unique Character Index : " << i << " which is Character : " << s[i] << endl;
 
     return 0;
 }
