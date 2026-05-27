@@ -5,6 +5,12 @@
 
 using namespace std;
 
+
+// Add Non_Repeating Characters in a New String Answer and if there is no non-repeating character left then append a '#' symbol.
+// 1) Brute force approach : Time : O(n^2) , Space : O(1)
+
+
+// 2) Optimized , using Queue : Time : O(n) , Space : O(n)
 int main()
 {
     string s;
