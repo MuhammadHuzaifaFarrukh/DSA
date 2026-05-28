@@ -84,6 +84,7 @@ public:
 // For storing objects with different counts , we define another class as 'Contain' that stores frequencies and objects of that frequencies.
 // So now our list will store the multiple frequencies objects.
 // Also we use unordered maps to store those multiple objects with their addresses in the doubly linked list so that they can be looked up very fast.
+// We store address in the form of iterators , not as traditional Node * because we are using STL , not the custom data type of Node.
 // We implement the inc and dec functions in such a way that our list has lowest frequencies objects at starting and ascending order (sorted) with highest frequencies objects at last.
 // This will make Max and Min functions also O(1).
 
