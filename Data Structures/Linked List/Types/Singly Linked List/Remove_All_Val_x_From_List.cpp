@@ -127,6 +127,8 @@ public:
             }
             else
             {
+                curr = nullptr;
+                delete curr;
             }
             curr = future;
         }
