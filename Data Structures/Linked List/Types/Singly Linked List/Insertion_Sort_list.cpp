@@ -93,7 +93,54 @@ public:
         cout << "NULL" << endl;
     }
 
-    // We used a dummy node and added other nodes infront of it.
+    // 1) Without using any dummy nodes.
+    // We need to keep checking if we have changed head or not.
+    // Time : O(n^2) , Space : O(1).
+    Node *insertionSortList(Node *head)
+    {
+        if (!head->next)
+        {
+            return head;
+        }
+
+        Node *temp1 = head;
+        Node *temp2 = head->next;
+        while (temp2)
+        {
+            Node *future = temp2->next;
+            Node *prev = head;
+            while (prev->next != temp2)
+            {
+                prev = prev->next;
+            }
+            bool head_change = 1;
+            if (temp2->data > temp1->data)
+            {
+                head_change = 0;
+            }
+            while (temp1->next != temp2 && temp2->data > temp1->next->data)
+            {
+                temp1 = temp1->next;
+            }
+            if (head_change)
+            {
+                prev->next = temp2->next;
+                temp2->next = temp1;
+                head = temp2;
+            }
+            else if (temp1->next != temp2)
+            {
+                prev->next = temp2->next;
+                temp2->next = temp1->next;
+                temp1->next = temp2;
+            }
+            temp2 = future;
+            temp1 = head;
+        }
+        return head;
+    }
+
+    // 2) We used a dummy node and added other nodes infront of it.
     // Time : O(n^2)
     // Space : O(1)
     Node *insertionSortList(Node *head)
