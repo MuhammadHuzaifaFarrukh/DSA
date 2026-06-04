@@ -7,6 +7,9 @@ using namespace std;
 
 // Given a string , we need to check if its valid parenthesis and if it is ,then we need to check how far it goes valid. (Only one type of parenthesis are given).
 // We need to return the length of the longest valid parenthesis in that string. There can be multiple or no valid parenthesis in the string.
+// Even if some part is not valid , we check for the valid part and return that length. So this time we are checking multiple valid ones and their lengths.
+// When 1 valid parenthesis ends , its length is stored and can be checked when the next valid one ends.
+
 
 // By using stack.
 // We will push indices instead of parenthesis in our stack.
