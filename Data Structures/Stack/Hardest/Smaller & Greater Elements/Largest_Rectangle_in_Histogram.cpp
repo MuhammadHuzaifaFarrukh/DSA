@@ -23,7 +23,7 @@ int largestRectangleArea(vector<int> &heights)
     vector<int> right(heights.size(), heights.size());
     vector<int> left(heights.size(), -1);
     stack<int> st;
-    // Find Next Greater Right
+    // Find Next Smaller Right
     for (int i = 0; i < heights.size(); i++)
     {
         while (!st.empty() && heights[st.top()] > heights[i])
@@ -40,7 +40,7 @@ int largestRectangleArea(vector<int> &heights)
         st.pop();
     }
 
-    // Find Next Greater Left
+    // Find Next Smaller Left
     for (int i = heights.size() - 1; i >= 0; i--)
     {
         while (!st.empty() && heights[st.top()] > heights[i])
