@@ -33,6 +33,28 @@ int firstUniqChar(string s)
     }
 }
 
+// 3) Using only Hash Map (or Vector for it)
+// We keep all elements count inside our map.
+// We then see the first character whose occurrence is 1 we return that index.
+// Time : O(n) , Space : O(26) = O(1)
+int firstUniqChar2(string s)
+{
+    vector<int> v(26, 0);
+    for (int i = 0; i < s.size(); i++)
+    {
+        v[s[i] - 'a']++;
+    }
+
+    for (int i = 0; i < s.size(); i++)
+    {
+        if (v[s[i] - 'a'] == 1)
+        {
+            return i;
+        }
+    }
+    return -1;
+}
+
 int main()
 {
     string s = "loveleetcode";
