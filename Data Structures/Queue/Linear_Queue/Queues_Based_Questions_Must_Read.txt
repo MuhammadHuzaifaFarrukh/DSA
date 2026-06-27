@@ -1,15 +1,15 @@
 Queues are for "First-Come, First-Served" logic. In competitive programming and systems, they are the go-to for processing items in the exact order they arrived.
 
 Usage of Linear Queue :
-1) Breadth-First Search (BFS): This is the #1 use case. To traverse a graph or tree level-by-level, you must use a queue.
-2) Level Order Traversal: Specifically for binary trees.
-3) Buffer/Task Scheduling: Simulating CPU task scheduling 
-4) Sliding Window (Specific cases): When you need to maintain a "window" of elements and remove from the start while adding to the end. (Deque can also be used or a priority queue though deque stands better)
-5) Ticket Counter
-6) Strictly Increasing Sequence
-7) Printer Queue
-8) First Unique Character	(Monotonic Queue)
-9) First Non Repeating Prefix	(Monotonic Queue)
-
+ 1) Breadth-First Search (BFS): This is the #1 use case. To traverse a graph or tree level-by-level, you must use a queue.
+ 2) Level Order Traversal: Specifically for binary trees.
+ 3) Buffer/Task Scheduling: Simulating CPU task scheduling 
+ 4) Sliding Window (Specific cases): When you need to maintain a "window" of elements and remove from the start while adding to the end. (Deque can  also be used or a priority queue though deque stands better)
+ 5) Ticket Counter
+ 6) Strictly Increasing Sequence
+ 7) Printer Queue
+ 8) First Unique Character	(Monotonic Queue)
+ 9) First Non Repeating Prefix	(Monotonic Queue)
+10) Minimum Consecutive Flips in 'K' Window
 
 Use linear queue whenever elements flow strictly one way — in from rear, out from front — and never come back! The moment an element cycles back to rear, it becomes a circular queue problem! 
