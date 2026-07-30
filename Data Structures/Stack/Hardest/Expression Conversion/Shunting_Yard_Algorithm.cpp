@@ -4,7 +4,7 @@
 
 using namespace std;
 
-// Shunning Yard Algorithm is used to convert Infix to Postfix Expression using Stack.
+// Shunting Yard Algorithm is used to convert Infix to Postfix Expression using Stack.
 // Converting to postfix is easier to debug and evaulate an expression
 
 // Function to return precedence of operators
