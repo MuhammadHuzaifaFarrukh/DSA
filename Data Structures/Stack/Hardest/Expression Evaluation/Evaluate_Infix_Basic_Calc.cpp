@@ -7,6 +7,8 @@ using namespace std;
 // You can either evaluate directly or use conversion.
 // Converting to postfix is easier to debug and evaulate an expression.
 // This function is the leetcode implementation (supports only addition and subtraction).
+// Usually when there are parenthesis involved , we use two stacks , however there are only 2 operations of same precedence so there's no need for two stacks.
+
 int calculate(string s)
 {
     stack<int> st;
@@ -17,7 +19,9 @@ int calculate(string s)
     {
         // 1. Skip whitespace
         if (s[i] == ' ')
+        {
             continue;
+        }
 
         // 2. If it's a digit, find the full number and use stoi
         if (isdigit(s[i]))
@@ -77,7 +81,10 @@ int main()
     return 0;
 }
 
-// This function is the normal daily implementation (supports all basic operations).
+// This function is the normal daily implementation (supports all basic operations using 2 stacks)
+// If there were no parenthesis in this , then we can do this using only 1 stack.
+// This here works for : (3+5)*9+6 etc
+// Will also work for expressions without parenthesis but would be an overkill.
 /*
 
 int getPrecedence(char op)
@@ -228,5 +235,60 @@ int calculate(string s)
     }
     return numbers.top();
 }
-
 */
+
+// This one is for the expressions that are infix with all 4 operations but without parenthesis.
+// int calculate(string s)
+// {
+//     stack<int> st;
+//     long currentNumber = 0;
+//     char operation = '+'; // Default operation for the first number
+
+//     for (int i = 0; i < s.length(); i++)
+//     {
+//         char c = s[i];
+
+//         if (isdigit(c))
+//         {
+//             currentNumber = currentNumber * 10 + (c - '0');
+//         }
+
+//         // Process operator or when reaching the end of string
+//         if ((!isdigit(c) && c != ' ') || i == s.length() - 1)
+//         {
+//             if (operation == '+')
+//             {
+//                 st.push(currentNumber);
+//             }
+//             else if (operation == '-')
+//             {
+//                 st.push(-currentNumber);
+//             }
+//             else if (operation == '*')
+//             {
+//                 int top = st.top();
+//                 st.pop();
+//                 st.push(top * currentNumber);
+//             }
+//             else if (operation == '/')
+//             {
+//                 int top = st.top();
+//                 st.pop();
+//                 st.push(top / currentNumber);
+//             }
+
+//             operation = c;     // Save the new operator
+//             currentNumber = 0; // Reset number builder
+//         }
+//     }
+
+//     // Sum up the entire stack
+//     int result = 0;
+//     while (!st.empty())
+//     {
+//         result += st.top();
+//         st.pop();
+//     }
+
+//     return result;
+// }
