@@ -1,0 +1,80 @@
+
+WHAT IS RECURSION?
+-------------------
+Recursion is when a function calls itself to solve a smaller version of the
+same problem, until it reaches a case simple enough to answer directly.
+
+Every recursive function has two parts:
+
+1. Base Case — the stopping condition. Without it, the function calls itself
+   forever and crashes with a stack overflow.
+2. Recursive Case — where the function calls itself with a smaller/simpler
+   input, moving it closer to the base case.
+
+Example (Factorial):
+
+    int factorial(int n) 
+    {
+        if (n == 0) return 1;        // base case
+        return n * factorial(n - 1); // recursive case
+    }
+
+Mentally, recursion works like a stack of plates. Each call is placed on top
+of the call stack, waits for the one above it (or below it, functionally) to
+finish, and only then computes its own result. This is why recursion is
+closely tied to the concept of "trusting" the function to correctly solve a
+smaller version of the problem (sometimes called the "leap of faith").
+
+TAIL vs NON-TAIL RECURSION
+----------------------------
+- Non-tail recursion: work happens AFTER the recursive call returns
+  (e.g. `n * factorial(n-1)` above). The stack has to hold onto each call
+  until it gets an answer back.
+- Tail recursion: the recursive call is the LAST operation, with nothing left
+  to do afterward. Some languages/compilers optimize this into a loop
+  (tail-call optimization), avoiding extra stack usage. C++ doesn't
+  guarantee this optimization, so don't rely on it blindly.
+
+WHEN TO USE RECURSION
+-----------------------
+- The problem is naturally defined in terms of smaller versions of itself
+  (factorial, Fibonacci, tree/graph traversal, divide and conquer).
+- The data structure is inherently recursive (trees, linked lists, nested
+  JSON, file system directories).
+- You need to explore all possibilities / backtrack (permutations,
+  combinations, maze paths, N-Queens, Sudoku solvers).
+- Divide-and-conquer algorithms (Merge Sort, Quick Sort, Binary Search) —
+  splitting the problem in half repeatedly is cleaner recursively.
+- The recursive solution is dramatically simpler/more readable than the
+  iterative one, and performance isn't the top priority.
+
+WHEN NOT TO USE RECURSION
+----------------------------
+- Simple linear iteration is enough (looping through an array/summing
+  numbers) — a plain loop is faster and uses less memory.
+- Input size is large and recursion depth could exceed the call stack limit
+  (stack overflow risk). Iteration or an explicit stack is safer.
+- Performance-critical code where function-call overhead matters — each
+  recursive call has overhead (pushing stack frames) that loops don't have.
+- The same subproblems get computed repeatedly without memoization (naive
+  Fibonacci is a classic example — exponential time instead of linear).
+- The language/environment doesn't optimize tail calls and depth could be
+  very large.
+
+QUICK TIPS
+------------
+1. Always define the base case FIRST and make sure it's actually reachable.
+2. Make sure every recursive call moves strictly closer to the base case
+   (shrinking input, smaller range, etc.) — otherwise infinite recursion.
+3. Trust the recursion: assume the recursive call already correctly solves
+   the smaller subproblem; don't try to mentally unroll every level.
+4. Watch for overlapping subproblems — if the same call happens multiple
+   times, consider memoization (top-down DP) or switch to an iterative/DP
+   approach.
+5. Recursion trades memory (call stack) for cleaner code — know that
+   trade-off before using it in performance-sensitive or large-input code.
+6. Draw the recursion tree (or trace 2-3 small examples by hand) when stuck
+   — it makes base cases and repeated work obvious.
+7. Any recursive solution can be converted to an iterative one using an
+   explicit stack — useful if you hit recursion depth limits.
+

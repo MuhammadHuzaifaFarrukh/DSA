@@ -1,0 +1,108 @@
+WHAT ARE MAZE/GRID BACKTRACKING PROBLEMS?
+----------------------------------------------
+These are problems on a 2D grid (matrix) where you move between cells —
+usually up/down/left/right, sometimes diagonally — trying to find a path,
+count paths, or explore connected regions, while respecting obstacles and
+boundaries. The recursive "choice" here is simply: which neighboring cell
+to move into next.
+Here we learn how to use recursion on a 2D Array.
+
+CORE TEMPLATE
+-----------------
+    void backtrack(row, col, grid, visited, path) {
+        if (out of bounds || grid[row][col] is blocked || visited[row][col])
+            return;
+
+        if (row, col is the destination) {
+            record(path);
+            return;
+        }
+
+        visited[row][col] = true;   // choose
+        path.push((row, col));
+
+        backtrack(row + 1, col, ...);  // down
+        backtrack(row - 1, col, ...);  // up
+        backtrack(row, col + 1, ...);  // right
+        backtrack(row, col - 1, ...);  // left
+
+        path.pop();                  // undo
+        visited[row][col] = false;   // undo (unmark so OTHER paths can reuse this cell)
+    }
+
+Note: whether you unmark `visited` on the way back depends on the problem —
+if you need ALL distinct paths (Rat in a Maze), you unmark it so other
+paths can pass through the same cell. If you only need connected
+regions/flood fill/island counting, you usually do NOT need to unmark,
+since each cell only needs to be visited once, ever.
+
+WHY WE USE IT
+----------------
+A grid naturally forms a decision tree: from any cell, there are a handful
+of neighbors to try next. Backtracking explores this tree, marking cells as
+visited to avoid infinite loops (going back and forth between two cells),
+and undoing that mark when it needs to allow the cell to be part of a
+different path.
+
+WHAT PROBLEMS IT SOLVES
+---------------------------
+- Path Finding — Rat in a Maze (find/print/count all paths from start to
+  end), Solvable Maze or Not (does any path exist)
+- Path Counting — Unique Paths (count paths under movement rules), Path
+  with Maximum Gold (best path value, not just existence)
+- Connected Components — Number of Islands, Max Area of Island, Closed
+  Islands, Island Perimeter — grouping connected cells that share a
+  property (e.g. all land cells touching each other)
+- Region Filling — Flood Fill (like the "paint bucket" tool), Surrounded
+  Regions (flipping enclosed regions based on connectivity to the border)
+- Grid Search with a Target Pattern — Word Search (finding a word by
+  tracing a path of adjacent letters on the board)
+- Escape/Reachability Problems — Escaping a Large Maze (can you get from
+  one point to another given obstacles, often on a huge/sparse grid)
+
+WHEN TO USE
+--------------
+- The problem is on a grid/matrix and involves movement between
+  neighboring cells.
+- You need to find if a path exists, enumerate all paths, count paths, or
+  explore/label connected regions.
+- The grid is small-to-moderate sized, since backtracking explores actual
+  paths (potentially exponential in the worst case for path-enumeration
+  problems).
+
+WHEN NOT TO USE
+-------------------
+- You only need the SHORTEST path or minimum steps — use BFS instead;
+  backtracking/DFS explores full paths and isn't naturally shortest-path
+  aware (BFS explores level by level, guaranteeing shortest path first in
+  unweighted grids).
+- You need connectivity/reachability info only, on a very large grid, with
+  no need to reconstruct actual paths — plain BFS/DFS (without the
+  choose/undo backtracking overhead) or Union-Find is simpler and faster.
+- The grid is huge and paths can be very long — pure backtracking-based
+  path enumeration can blow up combinatorially; problems like "Escaping a
+  Large Maze" specifically require smarter approaches (e.g. bounding the
+  search, BFS with limits) rather than naive backtracking.
+- You need an optimal value (max gold, min cost) and subproblems overlap
+  — Dynamic Programming (often DP on grids) is typically faster than
+  re-exploring the same cells across many backtracking branches.
+
+QUICK TIPS
+------------
+1. Always check bounds AND the blocked/visited condition together at the
+   very start of the function — this keeps the rest of the function clean.
+2. Decide whether you're solving a REACHABILITY question (do any path
+   exist — can return early on first success) versus an ENUMERATION
+   question (need to record every path — must explore fully).
+3. For "connected region" style problems (islands, flood fill), mark
+   visited permanently — no need to backtrack, since a cell only ever
+   belongs to one region and never needs revisiting from a different path.
+4. For "distinct path" style problems (Rat in a Maze, Word Search), you DO
+   need to unmark `visited` after exploring, so the same cell can be part
+   of a different path attempt.
+5. Use direction arrays for cleanliness:
+   `dr = {1,-1,0,0}; dc = {0,0,1,-1};` and loop over 4 directions instead
+   of writing 4 separate recursive calls.
+6. If the grid is large, always ask: do I need BFS (shortest path/level
+   order) instead of backtracking/DFS (path enumeration/exhaustive
+   search)? These solve different questions even though both work on grids.

@@ -1,0 +1,108 @@
+WHAT ARE PERMUTATIONS?
+--------------------------
+A permutation is an ARRANGEMENT of elements where ORDER MATTERS. [1,2] and
+[2,1] are different permutations of the same set. This is the opposite of
+combinations, and it changes the shape of the backtracking template: instead
+of always moving forward through an index, at every step you're allowed to
+pick from ANY unused element, not just the ones ahead of the current index.
+
+CORE TEMPLATE
+-----------------
+Using a "used" tracker (array or set) since any remaining element can be
+picked next, regardless of position:
+
+    void backtrack(path, used, choices) {
+        if (path.size() == choices.size()) {
+            record(path);
+            return;
+        }
+        for (i = 0; i < choices.size(); i++) {
+            if (used[i]) continue;
+            used[i] = true;
+            path.push(choices[i]);
+
+            backtrack(path, used, choices);
+
+            path.pop();          // undo
+            used[i] = false;     // undo
+        }
+    }
+
+Alternative (swap-based, no extra "used" array — swaps elements in place):
+
+    void backtrack(index, choices) {
+        if (index == choices.size()) {
+            record(choices);
+            return;
+        }
+        for (i = index; i < choices.size(); i++) {
+            swap(choices[index], choices[i]);
+            backtrack(index + 1, choices);
+            swap(choices[index], choices[i]);   // undo swap
+        }
+    }
+
+WHY WE USE IT
+----------------
+Whenever a problem needs every possible ORDERING of a set (or of a subset
+of it), you need to explore, at each position, every element not yet placed.
+Backtracking generates these arrangements one at a time, undoing each
+placement before trying the next, so the same array/state can be reused
+without extra memory copies.
+
+WHAT PROBLEMS IT SOLVES
+---------------------------
+- All Permutations / Unique Permutations (with duplicate elements in input)
+- Permutation Sequence / nPk — the k-th permutation, or permutations of a
+  fixed length k out of n elements
+- Next Permutation — a related but distinct technique (not backtracking,
+  more of an in-place rearrangement algorithm) worth knowing alongside this
+- N-Queens — placing queens such that no two attack each other is really
+  "permuting queens across columns/rows" under constraints
+- Sudoku Solver / Valid Sudoku — placing digits under row/col/box
+  constraints, choice-by-choice with backtracking
+- N-bit Binary Strings (with constraints like "more 1s than 0s" or "no
+  adjacent zeroes") — building sequences bit by bit, backtracking on
+  invalid partial strings
+- Letter Case Permutation — flipping each letter's case, order-sensitive
+  since positions matter
+- Target Sum / Ways to Make Target Sum — when order of chosen numbers
+  matters (each arrangement counted separately)
+
+WHEN TO USE
+--------------
+- The problem explicitly needs ARRANGEMENTS/ORDERINGS, not groupings.
+- Constraints must hold across the whole arrangement as it's built
+  (N-Queens, Sudoku) — letting you prune early when a partial arrangement
+  already breaks a rule.
+- You need ALL valid orderings, the k-th one, or a count of them.
+
+WHEN NOT TO USE
+-------------------
+- Order doesn't actually matter in the answer → that's a combination
+  problem; using permutation logic here just wastes time generating
+  duplicate groupings in different orders.
+- n is large — permutations grow as n!, which becomes intractable very
+  fast (10! is already 3.6 million). Backtracking with strong pruning
+  (like N-Queens' constraint checks) is what makes it usable at all; without
+  pruning, don't attempt this for large n.
+- Only the immediate "next" ordering is needed → use the dedicated Next
+  Permutation algorithm (in-place, O(n)) instead of generating all of them.
+
+QUICK TIPS
+------------
+1. Track "used" elements with a boolean array/set — permutations reuse the
+   whole element pool at every position, unlike combinations.
+2. For duplicate elements in input (e.g. [1,1,2]) and "no duplicate
+   permutations" requirement: sort first, and skip a duplicate value at the
+   same recursion depth UNLESS the previous identical element was already
+   used in this branch.
+3. The swap-based template avoids needing a separate "used" array, but
+   makes duplicate-skipping trickier — pick whichever template fits the
+   problem's duplicate-handling needs.
+4. For constraint-heavy problems (N-Queens, Sudoku): write a fast
+   `isValid(...)` check and call it BEFORE recursing deeper, not after —
+   that's where all the real pruning/performance comes from.
+5. Complexity is O(n!) in the worst case (or n!/repeats with duplicates) —
+   expect this to only be feasible for small n unless heavy pruning cuts
+   the search space down.

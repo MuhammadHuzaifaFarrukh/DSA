@@ -1,0 +1,129 @@
+BACKTRACKING — NOTES
+=====================
+
+WHAT IS BACKTRACKING?
+------------------------
+Backtracking is a recursive technique for solving problems by building a
+solution piece by piece, and abandoning ("backtracking" on) a piece as soon
+as it's clear it can't lead to a valid/optimal solution.
+
+Think of it as trying a choice, exploring everything that follows from it,
+and then UNDOING that choice before trying the next one — so the same
+"state" is reused for every branch instead of copying it each time.
+This undo / returning and reusing is the core of backtracking.
+
+It is essentially: Recursion + Choice + Undo.
+
+General template:
+
+# 1 : Without For Loop / Writing Explicit Choices
+	void backtrack(index, state) 
+  {
+    if (index == choices.length) 
+    {
+        if (state is a solution) 
+        record(state);
+        return;
+    }
+
+    // choice 1: include current element
+    make(choices[index]);
+    backtrack(index + 1, state);
+    undo(choices[index]);
+
+    // choice 2: exclude current element
+    backtrack(index + 1, state);
+
+    // (choice n: If there are more than 2 choices)
+  }
+
+
+# 2 : Using For Loop trying all Choices itself
+
+    void backtrack(state, choices) 
+    {
+        if (state is a solution) 
+        {
+            record(state);
+            return;
+        }
+        for (choice in choices) 
+        {
+            if (choice is valid) 
+            {
+                make(choice);           // choose
+                backtrack(state, ...);  // explore
+                undo(choice);           // un-choose (backtrack)
+            }
+        }
+    }
+
+WHY WE USE IT
+----------------
+Many problems require exploring ALL possible configurations (or all valid
+ones) — subsets, arrangements, paths, placements — and checking which ones
+work. Trying every possibility with plain brute force is often wasteful
+because it explores dead ends fully. Backtracking prunes: the moment a
+partial solution is invalid, it stops going deeper on that branch and tries
+the next option, saving time compared to generating everything and checking
+afterward.
+
+WHAT PROBLEMS IT SOLVES
+---------------------------
+- Combinations & Subsets — picking groups of elements (with/without
+  repetition, with a target sum, etc.)
+- Permutations & Arrangements — all orderings of a set, sequences with
+  constraints (N-Queens, Sudoku, N-bit strings with rules)
+- Maze / Grid / Graph Path Problems — finding paths, counting paths, flood
+  fill, island counting, word search on a grid
+- Constraint Satisfaction Problems — Sudoku, N-Queens, graph coloring —
+  anywhere you must place things under rules that must all hold at once
+- Partitioning Problems — palindrome partitioning, splitting an expression
+
+WHEN TO USE BACKTRACKING
+----------------------------
+- You need ALL valid solutions, or to count how many exist (all subsets
+  summing to target, all paths in a maze, all permutations).
+- You need to check IF a valid solution exists (solvable maze, valid
+  Sudoku placement), and can stop early once one is found.
+- The problem can be built incrementally, choice by choice, and a partial
+  choice can be checked for validity before going further (this is what
+  makes pruning possible — if you can't tell a partial solution is invalid
+  early, backtracking degenerates into plain brute force).
+- The search space is a tree of decisions (include/exclude, place/skip,
+  go up/down/left/right).
+
+WHEN NOT TO USE BACKTRACKING
+---------------------------------
+- The problem has overlapping subproblems and only needs an optimal
+  value (not all solutions) — Dynamic Programming is usually far faster,
+  since backtracking alone doesn't reuse previously computed results.
+- The search space is huge and poorly prunable — backtracking can still be
+  exponential in the worst case; without strong pruning conditions it's too
+  slow (e.g. brute-force permutations of a large set).
+- A greedy or direct formula-based approach already solves the problem
+  correctly and faster — backtracking is overkill if there's a simpler way.
+- You only need ONE quick answer and simpler iteration/search (BFS/DFS
+  without undo, two pointers, sliding window) already covers it.
+
+QUICK TIPS
+------------
+1. Always define clearly: what counts as a full/valid solution (base case),
+   and what makes a partial solution invalid (pruning condition).
+2. The "undo" step is what makes it backtracking, not just recursion —
+   don't forget to revert state (pop from path, unmark visited, etc.)
+   before trying the next choice.
+3. Prune as early as possible — check validity BEFORE recursing deeper,
+   not after building the full solution.
+4. For combination/subset problems: decide if repetition is allowed and if
+   order matters — this changes how you move the index forward in the loop.
+5. For permutation problems: track "used" elements (array/set) since order
+   matters and elements can't repeat unless explicitly allowed.
+6. For maze/grid problems: mark cells visited before recursing and unmark
+   (or restore) after, unless visited state must persist across paths.
+7. Watch out for duplicate results — sort input first and skip duplicate
+   choices at the same recursion level when the problem says "no duplicate
+   subsets/permutations".
+8. Time complexity is usually exponential (2^n, n!, etc.) — backtracking
+   makes such problems tractable in practice via pruning, not by changing
+   their worst-case complexity.

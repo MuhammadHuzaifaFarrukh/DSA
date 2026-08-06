@@ -1,0 +1,99 @@
+WHAT ARE COMBINATIONS?
+--------------------------
+A combination is a selection of elements from a set where ORDER DOES NOT
+MATTER. {1,2} and {2,1} are the same combination. This is what separates
+combination problems from permutation problems.
+
+In backtracking, combination problems are built by walking forward through
+an index and, at each step, deciding to INCLUDE the current element in the
+current subset/path or SKIP it — never going backward to reconsider an
+earlier index. This "always move forward" rule is exactly what prevents
+order from mattering and avoids duplicate {1,2}/{2,1} pairs.
+
+CORE TEMPLATE
+-----------------
+Loop-based (choose the next element to add from index i onward):
+
+    void backtrack(index, path, choices) {
+        if (path is a valid solution) {
+            record(path);
+            // return here if you don't want longer/shorter answers too
+        }
+        for (i = index; i < choices.size(); i++) {
+            path.push(choices[i]);
+            backtrack(i + 1, path, choices);   // move forward, never back
+            path.pop();                        // undo
+        }
+    }
+
+Binary include/exclude version (for subsets):
+
+    void backtrack(index, path, choices) {
+        if (index == choices.size()) {
+            record(path);
+            return;
+        }
+        path.push(choices[index]);
+        backtrack(index + 1, path, choices);   // include
+        path.pop();
+
+        backtrack(index + 1, path, choices);   // exclude
+    }
+
+WHY WE USE IT
+----------------
+Many problems ask for "all groups of elements that satisfy some condition"
+— all subsets, all groups summing to a target, all ways to partition
+something. Generating every possible group blindly is wasteful; moving the
+index forward and pruning invalid branches early (e.g. sum already exceeds
+target) cuts down massively on wasted work.
+
+WHAT PROBLEMS IT SOLVES
+---------------------------
+- Subsets / Power Set — all possible subsets of a set (with or without
+  duplicates in the input)
+- Subset Sum problems — does a subset exist that sums to target? how many
+  subsets sum to target? print them
+- Combination Sum (with/without repetition of elements, fixed target size
+  or not) — e.g. Combination Sum III, Coin Change (ways to make an amount)
+- Letter Case Combinations — treating each character as a binary
+  include/exclude-style choice (uppercase or lowercase)
+- Generate Parentheses — building valid strings under a structural
+  constraint (a specific kind of constrained combination)
+- Palindrome Partitioning — splitting a string into pieces, where each
+  split point is a "choice"
+- Expression Add Operators — inserting operators between digits, another
+  index-driven choice structure
+
+WHEN TO USE
+--------------
+- The question involves picking/selecting a GROUP of items and order does
+  not matter (subsets, sums, groupings, partitions).
+- You need ALL valid groups or a COUNT of them.
+- Repetition rules matter (allowed / not allowed / limited) — this changes
+  whether the recursive call passes `i` or `i + 1` as the next index.
+
+WHEN NOT TO USE
+-------------------
+- Order matters in the answer → that's a permutation problem, not a
+  combination problem.
+- Only the OPTIMAL group (max/min sum, best value) is needed and
+  subproblems overlap heavily → Dynamic Programming is usually far faster
+  (e.g. Coin Change's minimum-coins variant is better solved with DP).
+- The count can be computed directly with a formula (nCr / binomial
+  coefficient) with no extra constraints — no need to enumerate at all.
+
+QUICK TIPS
+------------
+1. To avoid picking the same element twice in one combination: recurse with
+   `i + 1` (element used once). To allow repetition: recurse with `i`
+   (same element can be picked again).
+2. To avoid duplicate combinations when the input itself has duplicates:
+   sort first, then skip over repeated values at the SAME recursion depth
+   (`if i > index && choices[i] == choices[i-1]: skip`).
+3. Prune early: if a running sum already exceeds the target (assuming
+   non-negative numbers), stop exploring that branch immediately.
+4. Fixed-size combinations (like "choose k of n"): pass a remaining-count
+   parameter, or stop early when path.size() == k.
+5. Think of it as a tree where each node picks "next index to add," and
+   the branch simply ends once index moves past the array length.
