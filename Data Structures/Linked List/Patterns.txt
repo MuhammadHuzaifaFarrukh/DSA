@@ -1,0 +1,73 @@
+𝗦𝘁𝗲𝗽 𝟭: 𝗟𝗲𝗮𝗿𝗻 𝘁𝗵𝗲 𝗕𝗮𝘀𝗶𝗰𝘀
+
+• Build a Singly Linked List
+• Build a Doubly Linked List
+• Insert at Beginning
+• Insert at End
+• Insert at Any Position
+• Delete at Beginning
+• Delete at End
+• Delete at Any Position
+• Search in a Linked List
+• Find Length of a Linked List
+• Reverse a Linked List (Iterative)
+• Reverse a Linked List (Recursive)
+
+𝗦𝘁𝗲𝗽 𝟮: 𝗘𝗮𝘀𝘆 𝗟𝗲𝗲𝘁𝗖𝗼𝗱𝗲
+
+• LC 206 – Reverse Linked List
+• LC 21 – Merge Two Sorted Lists
+• LC 83 – Remove Duplicates from Sorted List
+• LC 203 – Remove Linked List Elements
+• LC 237 – Delete Node in a Linked List
+• LC 1290 – Convert Binary Number in a Linked List to Integer
+
+𝗦𝘁𝗲𝗽 𝟯: 𝗧𝘄𝗼 𝗣𝗼𝗶𝗻𝘁𝗲𝗿 & 𝗦𝗹𝗼𝘄/𝗙𝗮𝘀𝘁 𝗣𝗮𝘁𝘁𝗲𝗿𝗻
+
+• LC 19 – Remove Nth Node From End of List
+• LC 1721 – Swapping Nodes in a Linked List
+• LC 876 – Middle of the Linked List
+• LC 160 – Intersection of Two Linked Lists
+• LC 141 – Linked List Cycle
+• LC 142 – Linked List Cycle II
+• LC 143 – Reorder List
+• LC 234 – Palindrome Linked List
+• LC 61 – Rotate List
+• LC 86 – Partition List
+
+𝗦𝘁𝗲𝗽 𝟰: 𝗥𝗲𝘃𝗲𝗿𝘀𝗮𝗹 𝗣𝗮𝘁𝘁𝗲𝗿𝗻
+
+• LC 92 – Reverse Linked List II
+• LC 25 – Reverse Nodes in k-Group
+• LC 24 – Swap Nodes in Pairs
+• LC 2074 – Reverse Nodes in Even Length Groups
+
+𝗦𝘁𝗲𝗽 𝟱: 𝗠𝗲𝗿𝗴𝗲 & 𝗦𝗼𝗿𝘁 𝗣𝗮𝘁𝘁𝗲𝗿𝗻
+
+• LC 23 – Merge k Sorted Lists
+• LC 148 – Sort List
+• LC 147 – Insertion Sort List
+• LC 382 – Linked List Random Node
+• LC 725 – Split Linked List in Parts
+
+𝗦𝘁𝗲𝗽 𝟲: 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗟𝗶𝗻𝗸𝗲𝗱 𝗟𝗶𝘀𝘁
+
+• LC 138 – Copy List with Random Pointer
+• LC 430 – Flatten a Multilevel Doubly Linked List
+• LC 445 – Add Two Numbers II
+• LC 460 – LFU Cache
+• LC 146 – LRU Cache
+• LC 432 – All O`one Data Structure
+
+𝗦𝘁𝗲𝗽 𝟳: 𝗠𝘂𝘀𝘁-𝗞𝗻𝗼𝘄 𝗜𝗻𝘁𝗲𝗿𝘃𝗶𝗲𝘄 𝗣𝗮𝘁𝘁𝗲𝗿𝗻𝘀
+
+• Dummy Node
+• Two Pointers
+• Slow & Fast Pointer
+• In-place Reversal
+• Merge Technique
+• Cycle Detection (Floyd's Algorithm)
+• Divide & Conquer
+• Recursion
+• Doubly Linked List Operations
+• Random Pointer Manipulation
