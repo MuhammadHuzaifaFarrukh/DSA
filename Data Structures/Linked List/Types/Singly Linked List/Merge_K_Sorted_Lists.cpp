@@ -24,6 +24,8 @@ public:
         head = nullptr;
     }
 
+    // This problem asks us to merge all the K-Sorted Linked lists into a single sorted linked list.
+    // This is similar to the flattening linked list.
     // 1) Keep merging the two lists until we have done all 'k'.
     // Time : O(Nk) , Space : O(1)
     Node *mergeKLists(vector<Node *> &lists)
