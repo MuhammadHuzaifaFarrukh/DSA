@@ -4,6 +4,9 @@
 
 using namespace std;
 
+// We only handle single digit / valued numbers only here.
+// For handling multi digit numbers we would need to include spaces as well for separation in input.
+
 bool isOperator(char x)
 {
     return (x == '+' || x == '-' || x == '*' || x == '/' || x == '^');
