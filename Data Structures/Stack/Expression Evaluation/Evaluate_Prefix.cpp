@@ -1,17 +1,18 @@
 #include <iostream>
 #include <stack>
 #include <string>
+#include <vector>
 using namespace std;
 
-
-// You can either evaluate directly or use conversion.
+// We can either evaluate directly or use conversion.
 // Converting to postfix is easier to debug and evaulate an expression.
+// We are given tokens[] array so multi-digits are handled automatically , no need to parse them here.
 
-int evalPrefix(string tokens[], int n)
+int evalPrefix(vector<string> &tokens)
 {
     stack<int> st;
 
-    for (int i = n - 1; i >= 0; i--)
+    for (int i = tokens.size() - 1; i >= 0; i--)
     {
         string s = tokens[i];
 
@@ -40,9 +41,11 @@ int evalPrefix(string tokens[], int n)
             }
             else if (s == "/")
             {
-                if (op2 == 0) 
+                if (op2 == 0)
                 {
-                    return 0; 
+                    cout << "Not Possible Divison by Zero , Converting Operand 0 to 1" << endl;
+                    op2 = 1;
+                    // return 0;
                 }
                 st.push(op1 / op2);
             }
@@ -54,22 +57,31 @@ int evalPrefix(string tokens[], int n)
 int main()
 {
     int n;
-    cout << "Enter n : ";
+    cout << "Enter total number of tokens: ";
     cin >> n;
 
-    cin.clear();
-    cin.ignore();
-    string *s = new string[n];
-    cout << "Enter whole expression :" << endl;
+    vector<string> tokens;
+    cout << "\nEnter " << n << " tokens (operands or operators like +, -, *, /):\n";
+
     for (int i = 0; i < n; i++)
     {
-        cout << "Enter a string [" << i << "] : ";
-        getline(cin, s[i]);
-        cout << endl;
+        string token;
+        cout << "Token [" << i + 1 << "]: ";
+        cin >> token; // Automatically handles whitespaces and single tokens cleanly
+        tokens.push_back(token);
     }
-    int x = evalPrefix(s, n);
-    cout << "Answer is : " << x << endl;
 
-    delete[] s;
+    // Display the entered expression cleanly
+    cout << "\nEvaluating Prefix Expression: [ ";
+    for (const string &t : tokens)
+    {
+        cout << t << " ";
+    }
+    cout << "]\n";
+
+    // Compute and display result
+    int result = evalPrefix(tokens);
+    cout << "Result: " << result << endl;
+
     return 0;
 }
