@@ -9,6 +9,8 @@ using namespace std;
 // This function is the leetcode implementation (supports only addition and subtraction).
 // Usually when there are parenthesis involved , we use two stacks , however there are only 2 operations of same precedence so there's no need for two stacks.
 
+// We are handling multi-digit numbers as well so that's why we also keep checking for the next number as well , when we find a digit.
+// If were just given single digit numbers , we would just push them / add to our answer and move along.
 int calculate(string s)
 {
     stack<int> st;
