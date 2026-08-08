@@ -4,12 +4,14 @@
 
 using namespace std;
 
-// We use shunning algorithm again in infix to prefix like we did in infix to postfix.
+// We use shunting algorithm again in infix to prefix like we did in infix to postfix.
 // You have two options.
-// 1) Apply shunning algorithm from right to left and take ( for ) and ) for ( and reverse the output.
-// 2) Reverse the whole string e.g : (A+B)*C -> C*(B+A) and reverse the output.
+// 1) Apply shunting algorithm from right to left and take ( for ) and ) for ( and reverse the output.
+// 2) Reverse the whole string e.g : (A+B)*C -> C*(B+A) , then apply shunting yard algorithm and reverse the output.
 
 // We go for the 2nd option here.
+// We only handle single digit / valued numbers only here.
+// For handling multi digit numbers we would need to include spaces as well for separation in output.
 
 // Manual string reverse function
 void reverseString(string &s)
@@ -27,11 +29,17 @@ void reverseString(string &s)
 int prec(char c)
 {
     if (c == '^')
+    {
         return 3;
+    }
     if (c == '*' || c == '/')
+    {
         return 2;
+    }
     if (c == '+' || c == '-')
+    {
         return 1;
+    }
     return -1;
 }
 
@@ -44,9 +52,13 @@ string infixToPrefix(string infix)
     for (int i = 0; i < infix.length(); i++)
     {
         if (infix[i] == '(')
+        {
             infix[i] = ')';
+        }
         else if (infix[i] == ')')
+        {
             infix[i] = '(';
+        }
     }
 
     // 3. Shunting Yard (Modified for Prefix)
@@ -57,7 +69,7 @@ string infixToPrefix(string infix)
     {
         char c = infix[i];
 
-        if (isalnum(c))
+        if (isalpha(c))
         {
             tempPostfix += c;
         }
