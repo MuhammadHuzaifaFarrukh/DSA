@@ -6,6 +6,8 @@
 using namespace std;
 
 // Converting to postfix is easier to debug and evaulate an expression
+// We only handle single digit / valued numbers only here.
+// For handling multi digit numbers we would need to include spaces as well for separation in input and output.
 
 bool isOperator(char x)
 {
