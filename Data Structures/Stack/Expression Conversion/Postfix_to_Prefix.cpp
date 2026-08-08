@@ -5,6 +5,9 @@
 
 using namespace std;
 
+// We only handle single digit / valued numbers only here.
+// For handling multi digit numbers we would need to include spaces as well for separation in input and output.
+
 bool isOperator(char x)
 {
     return (x == '+' || x == '-' || x == '*' || x == '/');
@@ -37,6 +40,6 @@ int main()
 {
     string x = "ABC+*";
     string s = postfixToPrefix(x);
-    cout<<"Prefix : "<<s<<endl;
+    cout << "Prefix : " << s << endl;
     return 0;
 }
