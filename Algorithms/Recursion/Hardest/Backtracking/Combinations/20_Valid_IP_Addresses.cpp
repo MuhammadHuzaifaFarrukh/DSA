@@ -99,9 +99,9 @@ void find2(vector<string> &ans, string &temp, int index, int parts, string &s)
     {
         if (index == s.size())
         {
-            temp.pop_back();
+            temp.pop_back();        // This removes the '.' that was put in sub+"."
             ans.push_back(temp);
-            temp.push_back('.');
+            temp.push_back('.');    // When bringing to original length , we need that dot back so we push it again.
         }
         return;
     }
@@ -129,6 +129,57 @@ void find2(vector<string> &ans, string &temp, int index, int parts, string &s)
     }
 }
 */
+
+// 3) Same as above but in a manner without for loop , typical combination include exclude choices.
+// We either make a cut , or skip it :
+// void find3(vector<string> &ans, string &temp, int index, int parts, int currentVal, int segmentLen, string &s)
+// {
+//     // Base Case: Processed all characters
+//     if (index == s.size())
+//     {
+//         if (parts == 4)
+//         {
+//             temp.pop_back();
+//             ans.push_back(temp);
+//             temp.push_back('.');
+//         }
+//         return;
+//     }
+
+//     if (parts >= 4)
+//     {
+//         return; // Prune if we exceed 4 segments
+//     }
+
+//     int digit = s[index] - '0';
+
+//     // Leading zero check: A segment cannot have length > 1 if it starts with '0'
+//     if (segmentLen == 1 && s[index - 1] == '0')
+//     {
+//         return;
+//     }
+
+//     int newVal = currentVal * 10 + digit;
+
+//     if (newVal > 255 || segmentLen > 3)
+//     {
+//         return;
+//     }
+
+//     int original = temp.size();
+
+//     // CHOICE 1: CUT HERE (Place a dot after s[index] and finish this segment)
+//     temp.push_back(s[index]);
+//     temp.push_back('.');
+//     find3(ans, temp, index + 1, parts + 1, 0, 0, s);
+//     temp.resize(original); // Backtrack
+
+//     // CHOICE 2: SKIP CUTTING (Continue extending this segment into the next character)
+//     temp.push_back(s[index]);
+//     find3(ans, temp, index + 1, parts, newVal, segmentLen + 1, s);
+//     temp.resize(original); // Backtrack
+// }
+
 int main()
 {
     string s = "25525511135";
@@ -159,7 +210,7 @@ P2: "5"     P2: "55"                            P2: "5"     P2: "52"
  "5"  "52"   "2"  "25"   "255"                   "2"  "25"   "5"
  (3)  (4)    (4)  (5)    (6)                     (4)  (5)    (5)
   |    |      |    |      |                       |    |      |
-  |    |      |    |      ❌ Out of chars         |    |      |
+  |    |      |    |      Out of chars            |    |      |
   |    |      |    |      (Parts=3, idx=6)        |    |      |
   |    |      |    +----------+                   |    +----+ |
   |    |      |               |                   |         | |
