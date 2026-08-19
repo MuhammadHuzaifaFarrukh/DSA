@@ -132,6 +132,10 @@ void find2(vector<string> &ans, string &temp, int index, int parts, string &s)
 */
 
 // 3) Same as above but in a manner without for loop , typical combination include exclude choices.
+// We've tried to write this one like same as the other partitioning problems , however this becomes slower if solved in the usual way.
+// Because in this problem , we know that we have to only make 4 valid parts , if we are able to make then we store the answer otherwise we backtrack which is not the case in the other parititioning problems that we solved like palindrome partitioning and expression add operators where string can go to as many length as it wants instead of just limited parts.
+// So that's why we don't prune it much , but here we can prune by making only 4 valid parts like done in the above solutions.
+// 'i' denotes starting of the segment and index denotes the current index in this.
 // void find3(vector<string> &ans, string &temp, const string &s, int i, int index)
 // {
 //     // Base Case: Reached the end of the string
