@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 /*
@@ -131,53 +132,46 @@ void find2(vector<string> &ans, string &temp, int index, int parts, string &s)
 */
 
 // 3) Same as above but in a manner without for loop , typical combination include exclude choices.
-// We either make a cut , or skip it :
-// void find3(vector<string> &ans, string &temp, int index, int parts, int currentVal, int segmentLen, string &s)
+// void find3(vector<string> &ans, string &temp, const string &s, int i, int index)
 // {
-//     // Base Case: Processed all characters
+//     // Base Case: Reached the end of the string
 //     if (index == s.size())
 //     {
-//         if (parts == 4)
+//         // If segment start 'i' is also at the end, it means the last character was cut.
+//         // A valid IP has exactly 4 parts, which corresponds to 4 dots in 'temp'.
+//         if (i == s.size() && count(temp.begin(), temp.end(), '.') == 4)
 //         {
-//             temp.pop_back();
+//             temp.pop_back(); // Remove trailing '.'
 //             ans.push_back(temp);
 //             temp.push_back('.');
 //         }
 //         return;
 //     }
 
-//     if (parts >= 4)
-//     {
-//         return; // Prune if we exceed 4 segments
-//     }
+//     // Extract substring from segment start 'i' to 'index'
+//     string sub = s.substr(i, index - i + 1);
 
-//     int digit = s[index] - '0';
-
-//     // Leading zero check: A segment cannot have length > 1 if it starts with '0'
-//     if (segmentLen == 1 && s[index - 1] == '0')
+//     // Prune if segment length exceeds 3
+//     if (sub.size() > 3)
 //     {
 //         return;
 //     }
 
-//     int newVal = currentVal * 10 + digit;
-
-//     if (newVal > 255 || segmentLen > 3)
+//     // --- BRANCH 1: OPTION TO MAKE A CUT HERE ---
+//     if (!(sub.size() > 1 && sub[0] == '0') && (stoi(sub) <= 255))
 //     {
-//         return;
+//         int original = temp.size();
+//         temp += sub + ".";
+
+//         // CUT MADE: Next segment starts at index + 1
+//         find3(ans, temp, s, index + 1, index + 1);
+
+//         temp.resize(original); // Backtrack
 //     }
 
-//     int original = temp.size();
-
-//     // CHOICE 1: CUT HERE (Place a dot after s[index] and finish this segment)
-//     temp.push_back(s[index]);
-//     temp.push_back('.');
-//     find3(ans, temp, index + 1, parts + 1, 0, 0, s);
-//     temp.resize(original); // Backtrack
-
-//     // CHOICE 2: SKIP CUTTING (Continue extending this segment into the next character)
-//     temp.push_back(s[index]);
-//     find3(ans, temp, index + 1, parts, newVal, segmentLen + 1, s);
-//     temp.resize(original); // Backtrack
+//     // --- BRANCH 2: OPTION TO SKIP THE CUT ---
+//     // Expand current substring rightward
+//     find3(ans, temp, s, i, index + 1);
 // }
 
 int main()
