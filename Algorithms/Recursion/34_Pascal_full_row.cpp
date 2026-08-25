@@ -94,13 +94,13 @@ vector<long long> getPascalRow(int n)
     long long current = 1;
     ans.push_back(current); // First element is always 1 (nC0)
 
-    for (int i = 1; i <= n; ++k)
+    for (int i = 1; i <= n; ++i)
     {
         // Compute next element using: current = current * (n - k + 1) / k
         current = current * (n - i + 1) / i;
         ans.push_back(current);
     }
 
-    return row;
+    return ans;
 }
 */
