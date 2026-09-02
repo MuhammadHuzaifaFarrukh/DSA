@@ -26,10 +26,11 @@ class Heap                                        // Think of this class just li
     int Cap;
     Compare comp; // Policy object to handle > or < logic
     // less<T> and greater<T> are functors so they use < and > for typename T.
-    // For having Heap that checks user defined classes , 1) overload < , > signs in that class.
+    // For having Heap that checks user defined classes , 
+    // 1) Overload both < , > signs in that class. and use it as : Heap <myObject , less<myCompare> or Heap <myObject , greater<myCompare>.
     // less<T> and greater<T> check the type of objects they are comparing and they begin to find the overloaded versions of those objects in that class.
 
-    // But if you don't want to use less<T> and greater<T> , 2) you can implement your own for your own class (The Advanced Way)
+    // 2) But if you don't want to use less<T> and greater<T> , you can implement your own for your own class (The Advanced Way)
     /**
     // For a MAX-HEAP (High priority at top)
         struct MaxCompare
