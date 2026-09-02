@@ -186,6 +186,19 @@ public:
     // Even 2nd may be determined but others cannot be determined.
     // Then the answers for 2nd-Last Highest can be different for both make_heaps.
 
+    // The make_heap() with Heapify is much better in terms of time complexity as compared with Step Up.
+    // That's because in Step-Up , in a CBT , there are n/2 nodes at the last level , almost half of the tree nodes , and they all have to do logn work to go up.
+    // This makes its time complexity much.
+    // Whereas with Heapify , the last level does no work , the 2nd last level does a constant work etc , only the last level does logn work.
+    // So if we see total contribution , it becomes much less.
+    // Total Work done in this with Shift down : (n/2*0) + (n/4) + (n/8*2) +...+ logn
+    // This becomes : Summation of (n/2^(h+1)*h) from 0 to logn.
+    // S = n(Summation of h/2^(h+1) from 0 to Infinite) = n(1) = O(n)
+    // (Summation of h/2^(h+1) from 0 to infinte) is Stellar series can be solved by letting it X.
+    // Then we do (X-1/2*X) to get an infinte geometric series => 1/2 + 1/4 + 1/8 + 1/16 +...
+    // Can we solved by formula : a/(1-r) and we get it as 1.
+
+
     // This inserts an element at the last place and then uses
     // Step-Up Approach to bring it upwards if it is greater.
     // Uses O(logn)
