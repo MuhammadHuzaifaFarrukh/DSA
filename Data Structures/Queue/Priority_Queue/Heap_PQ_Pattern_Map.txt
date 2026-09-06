@@ -1,0 +1,253 @@
+HEAP / PRIORITY QUEUE 
+======================
+Priority queues don't care about the order of entry; they only care about the value.
+Logically it is a queue , but structurally it is a tree (CBT).
+
+
+Usage of Priority Queue :
+ 1) Hospital Emergency
+ 2) Food VIP System
+ 3) Calculate Any Max Score
+ 4) Take Highest Profit
+ 5) Connect Ropes in Minimum Cost
+ 6) Seats Selling for Max Price
+ 7) Dijkstra’s Algorithm: Finding the shortest path in a graph.
+ 8) Top 'K' Elements: Finding the "Kth largest" or "K most frequent" elements in a stream or in an array (1D or 2D or more).
+ 9) Huffman Coding: Used in data compression (like ZIP files).
+10) Sorting the elements by Frequency (Any sorting on basis of a factor)
+11) Merging K Sorted Lists: Efficiently combining multiple sorted arrays into one.
+
+0. THE FIRST QUESTION TO ASK
+------------------------------
+Do I need the max/min of a growing or shrinking or streaming set, repeatedly?
+
+- Yes, repeatedly, and the set changes over time -> Heap / PQ.
+- Yes, but only once -> just sort or do a linear scan. No heap needed.
+- I need order among ALL elements, not just top or bottom -> Sort, no heap.
+- I need top/bottom K out of N, and K is fixed -> Heap works, but Quickselect
+  or Binary-Search-on-answer might be better. Explained in section 3.
+
+
+1. MIN HEAP vs MAX HEAP - THE ACTUAL RULE
+--------------------------------------------
+A heap always gives you easy access to whichever "extreme" element sits at
+the top. Decide which extreme you want to REMOVE or FIND, not which one you
+feel like "keeping."
+
+- Want the smallest element sitting on top (pop smallest / track running min)
+  -> MIN HEAP. Root = smallest.
+
+- Want the largest element sitting on top (pop largest / track running max)
+  -> MAX HEAP. Root = largest.
+
+- Want the Kth LARGEST element seen so far -> MIN HEAP capped at size K.
+  (Counter-intuitive, but this is the standard trick. See section 2.)
+
+- Want the Kth SMALLEST element -> MAX HEAP capped at size K. Mirror logic.
+
+- Greedy pattern like "always combine/attack the two biggest" (ropes, stones,
+  chocolates) -> MAX HEAP, because you always need the current largest.
+
+- Greedy pattern like "always serve the highest priority person/customer"
+  (hospital emergency, VIP food ordering) -> MAX HEAP by priority value.
+
+- Need two running halves of a stream, like a median -> MAX HEAP for the
+  lower half + MIN HEAP for the upper half. This is its own pattern, covered
+  in section 5.
+
+
+2. THE "OPTIMIZED" MIN/MAX HEAP TRICK - TOP-K PATTERN
+--------------------------------------------------------
+This is the single most important idea in the whole topic, so lock it in.
+
+To find the Kth LARGEST element, or the top-K largest elements, use a
+MIN HEAP capped at size K.
+- Push elements in one by one.
+- If heap size goes above K, pop the minimum.
+- Whatever survives are the K largest seen so far, and the root (which is
+  the min of that heap) IS the Kth largest.
+- Time complexity: O(N log K) instead of O(N log N) from sorting everything.
+  This is what "optimized" heap means - the heap size stays bounded at K,
+  it is not a different data structure, just a capped one.
+
+To find the Kth SMALLEST, or top-K smallest, use a MAX HEAP capped at size K.
+Same logic, mirrored.
+
+
+3. HEAP vs BINARY SEARCH vs QUICKSELECT - HOW TO CHOOSE
+-----------------------------------------------------------
+All three can solve "Kth largest/smallest" style problems. Choose based on
+what the problem is actually giving you.
+
+- If the data is a LIVE STREAM, elements keep arriving, and you need the
+  Kth-so-far repeatedly -> HEAP. It is the only structure built for
+  incremental/online data.
+
+- If the data is a STATIC ARRAY given once, and you only need one final
+  answer -> QUICKSELECT. It averages O(N), which beats heap's O(N log K).
+
+- If the problem says "no extra space" or "in-place" -> QUICKSELECT (or Binary Search maybe).
+
+- If the search space is over VALUES/ANSWERS rather than array indices
+  (examples: Kth smallest sum, Kth smallest fraction, Kth smallest in a
+  sorted matrix, Kth Positive Missing Value , Kth Smallest Pair 
+  Distance) -> BINARY SEARCH ON THE ANSWER VALUE, using a counting
+  function to check how many elements are <= a guessed value. This is often
+  faster than a heap for these specific problems.
+
+- If rows or lists are already individually sorted (matrix rows, K sorted
+  lists, K Sorted Arrays , Kth Pair Smallest Sum from 2 Sorted Arrays ,
+   Kth Smallest Value in 2D Matrix etc ) -> Heap (multi-way merge)
+  is the natural first solution, and Binary-Search-on-answer is usually the
+  more optimized follow-up for the same problem.
+
+- If none of the above applies, and it is just "find max/min repeatedly,
+  order does not matter" -> plain Heap.
+
+Rule of thumb: words like "stream," "repeatedly," or "K sorted lists/rows to
+merge" point to Heap. Words like "sorted matrix," "Kth smallest sum/fraction/
+pair" on a static, one-shot input point to trying Binary-Search-on-answer as
+the optimal route, with Heap as the easier fallback to code first.
+
+
+4. WHEN IT IS NEITHER HEAP, BINARY SEARCH, NOR QUICKSELECT ("NONE")
+-----------------------------------------------------------------------
+Some problems only look like heap problems because they mention "Kth" or
+"frequency," but actually have a better O(N) trick.
+
+- Frequency-bounded problems, where frequency is capped by array length
+  (character frequency, element frequency) -> BUCKET SORT, O(N), no heap.
+
+- Values restricted to a small fixed range, like colors 0/1/2
+  -> COUNTING SORT or DUTCH NATIONAL FLAG (two/three pointers), O(N), no heap.
+
+- Problems about counting distinct values or with a simple math observation
+  -> sometimes a heap simulation works but is NOT optimal. Check first if a
+  HashSet + counting + Sorting, or direct math, gives an O(N) answer instead.
+
+
+
+
+5. SPECIAL HEAP PATTERNS THAT ARE NOT JUST "MIN OR MAX"
+------------------------------------------------------------
+- TWO-HEAP / MEDIAN PATTERN: keep a max heap for the smaller half of the
+  numbers and a min heap for the larger half, rebalancing after every
+  insertion so the sizes never differ by more than 1. The medians sit right
+  at the two roots. Used for: median of a data stream.
+
+- MULTI-WAY MERGE PATTERN: push the first element of every list or row into
+  a min heap, along with which list/row it came from. Pop the minimum, then
+  push the next element from that same list/row. Used for: merging K sorted
+  lists, merging K sorted vectors, smallest range covering elements from K
+  lists, Kth smallest element in a sorted matrix.
+
+- HEAP AS A SIMULATION ENGINE: for greedy problems that say "repeat until
+  one/none left" or "process highest priority first" (ropes, stones,
+  chocolates, VIP food ordering, hospital priority), the heap is not finding
+  one fixed Kth value, it is driving a step-by-step greedy simulation.
+
+- HEAP PROPERTY / STRUCTURE PROBLEMS (Is Binary Tree a Heap, BST to Max Heap,
+  Merge Two Heaps, Height of Heap): these test whether you understand the
+  array-based complete binary tree representation, where parent index is
+  i/2 and children are at 2i and 2i+1. This is a structural skill, separate
+  from the "find the extreme value" reasoning used everywhere else.
+
+
+6. SOME SOLVED PROBLEMS, MAPPED ONE BY ONE
+========================================================================================================================
+
+PATTERN A: GREEDY SIMULATION (MAX HEAP)
+------------------------------------------
+These repeatedly grab the current largest element and act on it.
+ 
+- Hospital_Emergency_System - Max Heap by priority
+- Food_Ordering_System_VIP - Max Heap, VIP priority first
+- Last_Stone_Weight - Max Heap, smash two biggest
+- Magician_and_Chocolates - Max Heap
+- Profit_Maximisation - Max Heap
+- Take_Gifts_from_Richest_Pile - Max Heap
+- Maximal_Score_After_Applying_K_Operations - Max Heap
+- Minimum_Time_To_Fill_Cups - Max Heap (or direct math on 3 values)
+- Construct_Target_Array_with_Multiple_Sums - Max Heap, reverse simulation
+ 
+ 
+PATTERN B: GREEDY SIMULATION (MIN HEAP)
+------------------------------------------
+These repeatedly grab the current smallest element and act on it.
+ 
+- Connect_n_Ropes - Min Heap, always combine two smallest
+- Furthest_Building_You_Can_Reach - Min Heap, tracking K largest jumps used
+ 
+ 
+PATTERN C: TOP-K / KTH ELEMENT (FIXED SIZE HEAP)
+----------------------------------------------------
+Cap the heap at size K. Flip the heap type opposite to what you're finding.
+ 
+- Kth_Largest_Element_in_Array - Min Heap size K (or Quickselect / BS)
+- Kth_Smallest_Element_in_Array - Max Heap size K (or Quickselect / BS)
+- Kth_Largest_Element_in_a_Stream - Min Heap size K (heap mandatory, real stream)
+- Kth_Largest_Integer_in_Strings - Min Heap size K, compare by numeric value
+- K_Closest_Points_To_Origin - Max Heap size K (or Quickselect)
+- Top_K_Frequent_Elements - Min Heap size K (or Bucket Sort, O(N), better)
+- Sort_Chars_By_Frequency - Max Heap (or Bucket Sort, O(N), better)
+- Sum_between_k1_k2_Smallest - Min Heap, pop k2 times, sum from k1 to k2
+ 
+ 
+PATTERN D: MULTI-WAY MERGE (MIN HEAP OVER K LISTS/ROWS)
+-------------------------------------------------------------
+Push one element per list/row, pop min, push that list's next element.
+ 
+- Merge_K_Sorted_Lists - Min Heap of size K
+- Merge_K_Sorted_Vectors - Min Heap of size K
+- Smallest_Range_Covering_Elements_From_K_Lists - Min Heap of size K + max tracker
+- K_Pairs_of_Smallest_Sums - Min Heap, start with (i, 0) pairs
+- Kth_Smallest_Element_in_Sorted_Matrix - Min Heap (easy) or Binary Search on value (optimal)
+- Kth_Smallest_Fraction - Min Heap (easy) or Binary Search on value (optimal)
+ 
+ 
+PATTERN E: TWO-HEAP PATTERN
+--------------------------------
+Max Heap for the lower half, Min Heap for the upper half.
+ 
+- Median_From_Data_Stream - Max Heap (lower half) + Min Heap (upper half)
+ 
+ 
+PATTERN F: HEAP STRUCTURE / PROPERTY QUESTIONS
+----------------------------------------------------
+About the array-based complete binary tree itself, not "find the extreme."
+ 
+- Height_of_Heap - no algorithm, height = floor(log base 2 of n)
+- Is_Binary_Tree_Heap - check CBT shape + heap-order property
+- BST_to_Max_Heap - inorder traversal, then fill level by level (or heapify)
+- Merge_Two_Binary_Max_Heaps - concatenate arrays + heapify in O(N)
+ 
+ 
+PATTERN G: LOOKS LIKE HEAP, BETTER SOLVED WITHOUT ONE
+------------------------------------------------------------
+Heap simulation works on these, but is not the optimal approach.
+ 
+- Sort_Colors - Dutch National Flag / three pointers, O(N), no heap
+- Make_Array_Zero_By_Subtracting_Equal_Amounts - HashSet of distinct nonzero
+  values, no heap needed
+- Ugly_Number_II - three-pointer DP is optimal; Min Heap with a unordered set
+  also works but is heavier
+
+
+========================================================================================================================
+
+7. THE FOUR-QUESTION CHECKLIST TO USE ON ANY NEW PROBLEM
+--------------------------------------------------------------
+1. Repeated extreme queries, or one-shot? This decides Heap versus plain
+   sort.
+
+2. Which extreme do I pop? Smallest stays visible means Min Heap. Largest
+   stays visible means Max Heap.
+
+3. Is it a "Top-K" or "Kth ___" problem? If yes, cap the heap size at K and
+   flip the heap type - Min Heap for Kth largest, Max Heap for Kth smallest.
+   Then check: is the data streaming, which makes heap mandatory, or static,
+   which means Quickselect or Binary-Search-on-value might be better?
+
+4. Does the value range allow bucket or counting sort, or is there a plain
+   math or set-based trick? If yes, that beats a heap in Big-O terms. Only
+   fall back to a heap when that shortcut does not exist.
