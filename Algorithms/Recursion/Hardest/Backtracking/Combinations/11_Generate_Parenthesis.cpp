@@ -16,7 +16,7 @@ void Parenthesis(int n, int left, int right, string &temp, vector<string> &ans);
 // For no choice we take the right parenthesis and checking it must be less than left one otherwise it won't generate valid parenthesis.
 
 // If we see this n = 3 , we get 5 answers.
-// Observing this series gives us the series of Catalan Numbers Cn = C(2n,n)
+// Observing this series gives us the series given as : ( 2n , n ) / (n+1)  also known as Catalan Number (Cn) and (2n,n) is a Combinatory formula (2n C n ), (Here Cn Catalan number and C n are different things as C n is the combination formula to select 'r' things out of 'n' (n,r) ).
 
 // Time Comp :
 // If we see , our structure again becomes like a binary tree with some nodes left out.
